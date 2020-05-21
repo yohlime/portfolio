@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: emiliogozo.github.io
+Token: a20f7da29655a5fe2d026d585c12258f83c912fefe8ce46989148c7571feb5aa
