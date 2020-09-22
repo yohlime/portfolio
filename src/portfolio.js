@@ -1,79 +1,79 @@
-﻿
-/* Change this file to get your personal Portfolio */
+﻿/* Change this file to get your personal Portfolio */
 
 // Your Summary And Greeting Section
 
-import emoji from "react-easy-emoji";
+import emoji from 'react-easy-emoji';
 
 const greeting = {
   /* Your Summary And Greeting Section */
-  username: "Emilio Gozo",
+  username: 'Emilio Gozo',
   title: "yo! I'm emil",
-  subTitle: emoji("I spend time studying the weather and other cool stuff"),
-  resumeLink: "http://linkedin.com/in/emiliogozo"
+  subTitle: emoji('I spend time studying the weather and other cool stuff'),
+  resumeLink: 'http://linkedin.com/in/emiliogozo'
 };
 
 // Your Social Media Link
 
 const socialMediaLinks = {
-
-  github: "https://github.com/emiliogozo",
-  linkedin: "http://linkedin.com/in/emiliogozo",
-  gmail: "emil.gozo@gmail.com",
-  twitter: "http://twitter.com/emiliogozo"
+  github: 'https://github.com/emiliogozo',
+  linkedin: 'http://linkedin.com/in/emiliogozo',
+  gmail: 'emil.gozo@gmail.com',
+  twitter: 'http://twitter.com/emiliogozo'
   // Instagram and Twitter are also supported in the links!
 };
 
 // Your Skills Section
 
 const skillsSection = {
-  title: "What i do",
-  subTitle: "",
+  title: 'What i do',
+  subTitle: '',
   skills: [
-    emoji("⚡ Modeling using programs such as Weather Research and Forecasting (WRF) and Regional Climate Model (RegCM)"),
-    emoji("⚡ Data analysis especially on weather and climate information"),
-    emoji("⚡ Do some programming on the side")
+    emoji(
+      '⚡ Modeling using programs such as Weather Research and Forecasting (WRF) and Regional Climate Model (RegCM)'
+    ),
+    emoji('⚡ Data analysis especially on weather and climate information'),
+    emoji('⚡ Do some programming on the side')
   ],
 
-/* Make Sure You include correct Font Awesome Classname to view your icon
+  /* Make Sure You include correct Font Awesome Classname to view your icon
 https://fontawesome.com/icons?d=gallery */
 
   softwareSkills: [
     {
-      skillName: "html-5",
-      fontAwesomeClassname: "fab fa-html5"
+      skillName: 'html-5',
+      fontAwesomeClassname: 'fab fa-html5'
     },
     {
-      skillName: "css3",
-      fontAwesomeClassname: "fab fa-css3-alt"
+      skillName: 'css3',
+      fontAwesomeClassname: 'fab fa-css3-alt'
     },
     {
-      skillName: "sass",
-      fontAwesomeClassname: "fab fa-sass"
+      skillName: 'sass',
+      fontAwesomeClassname: 'fab fa-sass'
     },
     {
-      skillName: "JavaScript",
-      fontAwesomeClassname: "fab fa-js"
+      skillName: 'JavaScript',
+      fontAwesomeClassname: 'fab fa-js'
     },
     {
-      skillName: "reactjs",
-      fontAwesomeClassname: "fab fa-react"
+      skillName: 'reactjs',
+      fontAwesomeClassname: 'fab fa-react'
     },
     {
-      skillName: "nodejs",
-      fontAwesomeClassname: "fab fa-node"
+      skillName: 'nodejs',
+      fontAwesomeClassname: 'fab fa-node'
     },
     {
-      skillName: "npm",
-      fontAwesomeClassname: "fab fa-npm"
+      skillName: 'npm',
+      fontAwesomeClassname: 'fab fa-npm'
     },
     {
-      skillName: "sql-database",
-      fontAwesomeClassname: "fas fa-database"
+      skillName: 'sql-database',
+      fontAwesomeClassname: 'fas fa-database'
     },
     {
-      skillName: "python",
-      fontAwesomeClassname: "fab fa-python"
+      skillName: 'python',
+      fontAwesomeClassname: 'fab fa-python'
     }
   ]
 };
@@ -84,20 +84,20 @@ const techStack = {
   viewSkillBars: true, //Set it to true to show Proficiency Section
   experience: [
     {
-      Stack: "Data Science",  //Insert stack or technology you have experience in
-      progressPercentage: "70%"  //Insert relative proficiency in percentage
+      Stack: 'Data Science', //Insert stack or technology you have experience in
+      progressPercentage: '70%' //Insert relative proficiency in percentage
     },
     {
-      Stack: "Programming",
-      progressPercentage: "80%"
+      Stack: 'Programming',
+      progressPercentage: '80%'
     },
     {
-      Stack: "Frontend/Design",  //Insert stack or technology you have experience in
-      progressPercentage: "30%"  //Insert relative proficiency in percentage
+      Stack: 'Frontend/Design', //Insert stack or technology you have experience in
+      progressPercentage: '30%' //Insert relative proficiency in percentage
     },
     {
-      Stack: "Backend",
-      progressPercentage: "60%"
+      Stack: 'Backend',
+      progressPercentage: '60%'
     }
   ]
 };
@@ -106,11 +106,10 @@ const techStack = {
 To know how to get github key look at readme.md */
 
 const openSource = {
-  githubConvertedToken: "MDYzMjkyNmUwMzU1Mjk2OGM2ODUxNTcxYWM1ZGRkMjE3NjQzYTZlZQ==",
-  githubUserName: "emiliogozo",
-  showGithubProfile :"true" // Set true or false to show Contact profile using Github, defaults to false 
+  githubConvertedToken: 'MDYzMjkyNmUwMzU1Mjk2OGM2ODUxNTcxYWM1ZGRkMjE3NjQzYTZlZQ==',
+  githubUserName: 'emiliogozo',
+  showGithubProfile: 'true' // Set true or false to show Contact profile using Github, defaults to false
 };
-
 
 // Some Big Projects You have worked with your company
 
@@ -217,18 +216,23 @@ const openSource = {
 // };
 
 const contactInfo = {
-  title: emoji("Contact Me 📧"),
-  subtitle: "Discuss a project or just want to say hi? My Inbox is open for all.",
-  email_address: "emil.gozo@gmail.com"
+  title: emoji('Contact Me 📧'),
+  subtitle: 'Discuss a project or just want to say hi? My Inbox is open for all.',
+  email_address: 'emil.gozo@gmail.com'
 };
 
 //Twitter Section
 
 const twitterDetails = {
-
-  userName : "emiliogozo"//Replace "twitter" with your twitter username without @
-  
+  userName: 'emiliogozo' //Replace "twitter" with your twitter username without @
 };
 // export { greeting, socialMediaLinks, skillsSection, techStack, openSource, bigProjects, achievementSection, blogSection, talkSection, podcastSection, contactInfo, twitterDetails };
-export { greeting, socialMediaLinks, skillsSection, techStack, openSource, contactInfo, twitterDetails };
-
+export {
+  greeting,
+  socialMediaLinks,
+  skillsSection,
+  techStack,
+  openSource,
+  contactInfo,
+  twitterDetails
+};

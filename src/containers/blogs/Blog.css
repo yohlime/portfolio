@@ -34,10 +34,10 @@
   max-width: 100%;
   height: auto;
 }
-.blog-text-div{
+.blog-text-div {
   display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    gap: 32px;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 32px;
 }
 
 /* Media Query */
@@ -58,8 +58,8 @@
   }
 }
 
-@media screen and (max-width: 480px) and (min-width:300px){
-  .blog-text-div{
+@media screen and (max-width: 480px) and (min-width: 300px) {
+  .blog-text-div {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
 }
