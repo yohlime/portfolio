@@ -2,20 +2,21 @@ import React from 'react';
 import './Progress.css';
 import { techStack } from '../../portfolio';
 import { Fade } from 'react-reveal';
+import { ReactComponent as SkillImg } from '../../assets/images/skill.svg';
 
-export default function StackProgress() {
+const StackProgress = () => {
   if (techStack.viewSkillBars) {
     return (
       <Fade bottom duration={1000} distance="20px">
         <div className="skills-container">
           <div className="skills-bar">
             <h1 className="skills-heading">Proficiency</h1>
-            {techStack.experience.map((exp) => {
+            {techStack.experience.map((exp, idx) => {
               const progressStyle = {
                 width: exp.progressPercentage
               };
               return (
-                <div className="skill">
+                <div className="skill" key={idx}>
                   <p>{exp.Stack}</p>
                   <div className="meter">
                     <span style={progressStyle}></span>
@@ -26,11 +27,13 @@ export default function StackProgress() {
           </div>
 
           <div className="skills-image">
-            <img alt="Skills" src={require('../../assests/images/skill.svg')} />
+            <SkillImg alt="Skills" />
           </div>
         </div>
       </Fade>
     );
   }
   return null;
-}
+};
+
+export default StackProgress;

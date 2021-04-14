@@ -7,14 +7,14 @@ import Button from '../../components/button/Button';
 import { openSource, socialMediaLinks } from '../../portfolio';
 import { Fade } from 'react-reveal';
 
-export default function Projects() {
+const Projects = () => {
   const [repo, setrepo] = useState([]);
 
   useEffect(() => {
     getRepoData();
   }, []);
 
-  function getRepoData() {
+  const getRepoData = () => {
     const client = new ApolloClient({
       uri: 'https://api.github.com/graphql',
       request: (operation) => {
@@ -59,13 +59,10 @@ export default function Projects() {
       })
       .then((result) => {
         setrepoFunction(result.data.user.pinnedItems.edges);
-        console.log(result);
       });
-  }
+  };
 
-  function setrepoFunction(array) {
-    setrepo(array);
-  }
+  const setrepoFunction = (array) => setrepo(array);
 
   return (
     <Fade bottom duration={1000} distance="20px">
@@ -85,4 +82,6 @@ export default function Projects() {
       </div>
     </Fade>
   );
-}
+};
+
+export default Projects;

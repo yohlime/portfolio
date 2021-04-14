@@ -40,7 +40,7 @@
   line-height: 40px;
 }
 
-.greeting-image-div > img {
+.greeting-image-div > svg {
   max-width: 100%;
   height: auto;
 }

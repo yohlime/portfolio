@@ -5,7 +5,8 @@ import { twitterDetails } from '../../portfolio';
 import { Fade } from 'react-reveal';
 
 var widthScreen = window.screen.width;
-export default function Twitter() {
+
+const Twitter = () => {
   if (twitterDetails.userName) {
     return (
       <Fade bottom duration={1000} distance="20px">
@@ -27,4 +28,6 @@ export default function Twitter() {
   } else {
     return null;
   }
-}
+};
+
+export default Twitter;

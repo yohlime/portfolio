@@ -2,11 +2,11 @@ import React from 'react';
 import './GithubRepoCard.css';
 import { Fade } from 'react-reveal';
 
-export default function GithubRepoCard({ repo }) {
-  function openRepoinNewTab(url) {
-    var win = window.open(url, '_blank');
+const GithubRepoCard = ({ repo }) => {
+  const openRepoinNewTab = (url) => {
+    const win = window.open(url, '_blank');
     win.focus();
-  }
+  };
 
   return (
     <Fade bottom duration={1000} distance="20px">
@@ -80,4 +80,6 @@ export default function GithubRepoCard({ repo }) {
       </div>
     </Fade>
   );
-}
+};
+
+export default GithubRepoCard;

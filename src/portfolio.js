@@ -25,14 +25,14 @@ const socialMediaLinks = {
 // Your Skills Section
 
 const skillsSection = {
-  title: 'What i do',
+  title: 'What I do',
   subTitle: '',
   skills: [
     emoji(
-      '⚡ Modeling using programs such as Weather Research and Forecasting (WRF) and Regional Climate Model (RegCM)'
+      '🌧️ Numerical Modelling using programs such as Weather Research and Forecasting (WRF) and Regional Climate Model (RegCM)'
     ),
-    emoji('⚡ Data analysis especially on weather and climate information'),
-    emoji('⚡ Do some programming on the side')
+    emoji('📈 Data analysis especially on weather and climate information'),
+    emoji('🌐 Web development using javascript and php')
   ],
 
   /* Make Sure You include correct Font Awesome Classname to view your icon
@@ -46,10 +46,6 @@ https://fontawesome.com/icons?d=gallery */
     {
       skillName: 'css3',
       fontAwesomeClassname: 'fab fa-css3-alt'
-    },
-    {
-      skillName: 'sass',
-      fontAwesomeClassname: 'fab fa-sass'
     },
     {
       skillName: 'JavaScript',
@@ -74,6 +70,14 @@ https://fontawesome.com/icons?d=gallery */
     {
       skillName: 'python',
       fontAwesomeClassname: 'fab fa-python'
+    },
+    {
+      skillName: 'php',
+      fontAwesomeClassname: 'fab fa-php'
+    },
+    {
+      skillName: 'laravel',
+      fontAwesomeClassname: 'fab fa-laravel'
     }
   ]
 };
