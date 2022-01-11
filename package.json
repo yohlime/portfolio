@@ -9,11 +9,10 @@
     "axios": "^0.21.1",
     "gh-pages": "^3.1.0",
     "graphql": "^14.5.8",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-easy-emoji": "^1.4.0",
     "react-reveal": "^1.2.2",
-    "react-scripts": "4.0.3",
     "react-twitter-embed": "3.0.3"
   },
   "scripts": {
@@ -45,6 +44,7 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "react-scripts": "4.0.3"
   }
 }
