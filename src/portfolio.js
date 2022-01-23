@@ -225,18 +225,5 @@ const contactInfo = {
   email_address: 'emil.gozo@gmail.com'
 };
 
-//Twitter Section
-
-const twitterDetails = {
-  userName: 'emiliogozo' //Replace "twitter" with your twitter username without @
-};
-// export { greeting, socialMediaLinks, skillsSection, techStack, openSource, bigProjects, achievementSection, blogSection, talkSection, podcastSection, contactInfo, twitterDetails };
-export {
-  greeting,
-  socialMediaLinks,
-  skillsSection,
-  techStack,
-  openSource,
-  contactInfo,
-  twitterDetails
-};
+// export { greeting, socialMediaLinks, skillsSection, techStack, openSource, bigProjects, achievementSection, blogSection, talkSection, podcastSection, contactInfo };
+export { greeting, socialMediaLinks, skillsSection, techStack, openSource, contactInfo };
