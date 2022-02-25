@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",
+    "@vitejs/plugin-react": "1.1.1",
     "apollo-boost": "^0.4.9",
     "axios": "^0.21.1",
     "gh-pages": "^3.1.0",
@@ -12,15 +13,15 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-easy-emoji": "^1.4.0",
-    "react-reveal": "^1.2.2"
+    "react-reveal": "^1.2.2",
+    "vite": "2.7.0",
+    "vite-plugin-svgr": "^1.0.1"
   },
   "scripts": {
     "predeploy": "yarn build",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "vite",
+    "build": "vite build",
     "deploy": "gh-pages -d build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\""
@@ -43,7 +44,6 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "prettier": "^2.2.1",
-    "react-scripts": "5.0.0"
+    "prettier": "^2.2.1"
   }
 }
