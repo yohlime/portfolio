@@ -21,6 +21,7 @@
     "predeploy": "yarn build",
     "start": "vite",
     "build": "vite build",
+    "serve": "vite preview",
     "deploy": "gh-pages -d build",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
