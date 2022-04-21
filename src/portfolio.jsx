@@ -110,9 +110,9 @@ const techStack = {
 To know how to get github key look at readme.md */
 
 const openSource = {
-  githubConvertedToken: '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',
   githubUserName: 'emiliogozo',
-  showGithubProfile: 'true' // Set true or false to show Contact profile using Github, defaults to false
+  showGithubProfile: 'true', // Set true or false to show Contact profile using Github, defaults to
+  repos: ['jtwc_best_track_wp', 'ph-covid19-api', 'ph-covid19-data-mongodb', 'ph-covid19-nextjs']
 };
 
 // Some Big Projects You have worked with your company
