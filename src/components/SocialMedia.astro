@@ -1,0 +1,89 @@
+---
+import { socialMediaLinks } from '../data/portfolio'
+---
+
+<div class="flex space-x-2 justify-center md:justify-start">
+  {
+    socialMediaLinks.github && (
+      <a
+        href={socialMediaLinks.github}
+        class="flex rounded-full bg-[#333] w-10 h-10 hover:bg-black transition duration-300 ease-in justify-center items-center"
+        target="_blank"
+      >
+        <div class="i-fa6-brands-github w-1/2 h-1/2 text-white" />
+      </a>
+    )
+  }
+
+  {
+    socialMediaLinks.linkedin && (
+      <a
+        href={socialMediaLinks.linkedin}
+        class="flex rounded-full bg-[#0e76a8] w-10 h-10 hover:bg-black transition duration-300 ease-in justify-center items-center"
+        target="_blank"
+      >
+        <i class="i-fa6-brands-linkedin-in w-1/2 h-1/2 text-white" />
+      </a>
+    )
+  }
+
+  {
+    socialMediaLinks.gitlab && (
+      <a
+        href={socialMediaLinks.gitlab}
+        class="flex rounded-full bg-[#fca326] w-10 h-10 hover:bg-black transition duration-300 ease-in justify-center items-center"
+        target="_blank"
+      >
+        <i class="i-fa6-brands-gitlab w-1/2 h-1/2 text-white" />
+      </a>
+    )
+  }
+
+  {
+    socialMediaLinks.facebook && (
+      <a
+        href={socialMediaLinks.facebook}
+        class="flex rounded-full bg-[#3b5998] w-10 h-10 hover:bg-black transition duration-300 ease-in justify-center items-center"
+        target="_blank"
+      >
+        <i class="i-fa6-brands-facebook-f w-1/2 h-1/2 text-white" />
+      </a>
+    )
+  }
+
+  {
+    socialMediaLinks.instagram && (
+      <a
+        href={socialMediaLinks.instagram}
+        class="flex rounded-full bg-[#c13584] w-10 h-10 hover:bg-black transition duration-300 ease-in justify-center items-center"
+        target="_blank"
+      >
+        <i class="i-fa6-brands-instagram w-1/2 h-1/2 text-white" />
+      </a>
+    )
+  }
+
+  {
+    socialMediaLinks.twitter && (
+      <a
+        href={socialMediaLinks.twitter}
+        class="flex rounded-full bg-[#1da1f2]  w-10 h-10 hover:bg-black transition duration-300 ease-in justify-center items-center"
+        target="_blank"
+      >
+        <i class="i-fa6-brands-twitter w-1/2 h-1/2 text-white" />
+      </a>
+    )
+  }
+
+  {
+    socialMediaLinks.gmail && (
+      <a
+        href={`mailto:${socialMediaLinks.gmail}`}
+        class="flex rounded-full bg-[#ea4335]  w-10 h-10 hover:bg-black transition duration-300 ease-in justify-center items-center"
+        target="_blank"
+      >
+        <i class="i-fa6-solid-envelope w-1/2 h-1/2 text-white" />
+      </a>
+    )
+  }
+</div>

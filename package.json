@@ -1,48 +1,28 @@
 {
-  "homepage": "https://emiliogozo.github.io",
-  "name": "emiliogozo.github.io",
-  "version": "0.2.0",
-  "private": true,
-  "dependencies": {
-    "@vitejs/plugin-react": "1.1.1",
-    "axios": "^0.21.1",
-    "gh-pages": "^3.1.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-easy-emoji": "^1.4.0",
-    "react-reveal": "^1.2.2",
-    "vite": "2.7.0",
-    "vite-plugin-svgr": "^1.0.1"
-  },
+  "name": "emil-portfolio",
+  "type": "module",
+  "version": "0.0.1",
   "scripts": {
-    "predeploy": "yarn build",
-    "start": "vite",
-    "build": "vite build",
-    "serve": "vite preview",
-    "deploy": "gh-pages -d build"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "@astrojs/check": "^0.3.4",
+    "astro": "^4.0.7",
+    "axios": "^1.6.2",
+    "typescript": "^5.3.3",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
-    "eslint": "^7.11.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-prettier": "^3.3.1",
-    "eslint-plugin-react": "^7.22.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "identity-obj-proxy": "^3.0.0",
-    "prettier": "^2.2.1"
+    "@iconify-json/emojione": "^1.1.10",
+    "@iconify-json/fa6-brands": "^1.1.18",
+    "@iconify-json/fa6-solid": "^1.1.20",
+    "@unocss/preset-icons": "^0.58.0",
+    "@unocss/preset-uno": "^0.58.0",
+    "@unocss/reset": "^0.58.0",
+    "unocss": "^0.58.0"
   }
 }

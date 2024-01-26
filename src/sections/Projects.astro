@@ -1,0 +1,20 @@
+---
+import Button from '../components/Button.astro'
+import GithubRepoCard from '../components/GithubRepoCard.astro'
+import { socialMediaLinks } from '../data/portfolio'
+import type { GHProfile } from '../types/github'
+
+interface Props {
+  prof: GHProfile
+}
+
+const { prof } = Astro.props
+---
+
+<div class="flex flex-col space-y-2 md:space-y-4" id="opensource">
+  <h1 class="text-3xl md:text-6xl">Open Source Projects</h1>
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-2">
+    {prof.pinnedItems.edges.map((v) => <GithubRepoCard repo={v} />)}
+  </div>
+  <Button text={'More Projects'} href={socialMediaLinks.github} new-tab={true} />
+</div>

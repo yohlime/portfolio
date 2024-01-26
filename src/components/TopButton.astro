@@ -1,0 +1,34 @@
+<top-button
+  title="Go to top"
+  class="fixed bottom-4 right-4 z-50 bg-default hover:bg-black text-white text-lg md:text-3xl cursor-pointer p-3 rounded-xl transition-colors duration-300 ease-in"
+>
+  <div class="i-fa6-solid-hand-pointer"></div>
+</top-button>
+
+<script>
+  class TopButton extends HTMLElement {
+    constructor() {
+      super()
+
+      this.style.visibility = 'hidden'
+
+      this.addEventListener('click', () => {
+        document.body.scrollTop = 0 // For Safari
+        document.documentElement.scrollTop = 0 // For Chrome, Firefox, IE and Opera
+      })
+
+      window.onscroll = () => this.handleScroll()
+      window.onload = () => this.handleScroll()
+    }
+
+    handleScroll() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        this.style.visibility = 'visible'
+      } else {
+        this.style.visibility = 'hidden'
+      }
+    }
+  }
+
+  customElements.define('top-button', TopButton)
+</script>

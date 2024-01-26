@@ -1,0 +1,36 @@
+---
+import { greeting } from '../data/portfolio'
+---
+
+<header class="flex flex-col md:flex-row justify-start md:justify-between md:items-center">
+  <div class="peer flex justify-between items-center">
+    <a href="" class="text-3xl">
+      <span class="text-gray-400"> &lt;</span>
+      <span class="font-bold font-agustina mx-1 text-default">{greeting.username}</span>
+      <span class="text-gray-400">/&gt;</span>
+    </a>
+
+    <div class="relative space-y-4px flex flex-col w-5 h-full cursor-pointer md:hidden">
+      <input type="checkbox" class="peer absolute inset-0 opacity-0 z-36" />
+      <div class="h-2px w-5 bg-black peer-checked:-rotate-45 peer-checked:translate-y-1.5 transition-all duration-150">
+      </div>
+      <div class="h-2px w-5 bg-black peer-checked:bg-white transition-all duration-150"></div>
+      <div class="h-2px w-5 bg-black peer-checked:rotate-45 peer-checked:-translate-y-1.5 transition-all duration-150">
+      </div>
+    </div>
+  </div>
+
+  <ul
+    class="bg-white flex flex-col md:text-xl md:flex-row md:space-x-8 md:items-center opacity-0 md:opacity-100 max-h-0 peer-has-[:checked]:max-h-max peer-has-[:checked]:opacity-100 transition-all duration-200 ease-in"
+  >
+    <li>
+      <a href="#skills" class="block py-2 px-3 md:p-0 text-black hover:text-default">Skills</a>
+    </li>
+    <li>
+      <a href="#opensource" class="block py-2 px-3 md:p-0 text-black hover:text-default">Open Source</a>
+    </li>
+    <li>
+      <a href="#contact" class="block py-2 px-3 md:p-0 text-black hover:text-default">Contact Me</a>
+    </li>
+  </ul>
+</header>

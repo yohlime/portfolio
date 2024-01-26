@@ -1,0 +1,26 @@
+---
+import { skillsSection } from '../data/portfolio'
+
+import DevActivityImg from '../assets/images/developerActivity.svg'
+import SoftwareSkill from '../components/SoftwareSkill.astro'
+---
+
+<div class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4" id="skills">
+  <div class="order-last md:order-first">
+    <img
+      src={DevActivityImg.src}
+      height={DevActivityImg.height}
+      width={DevActivityImg.width}
+      alt="dev working"
+      class="h-auto w-full"
+    />
+  </div>
+  <div class="flex flex-col space-y-1 md:space-y-2">
+    <h1 class="text-3xl md:text-6xl">{skillsSection.title}</h1>
+    <p class="text-xl md:text-3xl text-subtitle">{skillsSection.subTitle}</p>
+    <SoftwareSkill />
+    <div class="flex flex-col space-y-2">
+      {skillsSection.skills.map((skills) => <p class="text-base md:text-2xl text-subtitle">{skills}</p>)}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+---
+import { fetchProfile } from '../lib/github'
+
+import Footer from '../components/Footer.astro'
+import Header from '../components/Header.astro'
+import TopButton from '../components/TopButton.astro'
+import Greeting from '../sections/Greeting.astro'
+import Profile from '../sections/Profile.astro'
+import Projects from '../sections/Projects.astro'
+import Skills from '../sections/Skills.astro'
+
+const ghProfile = await fetchProfile()
+---
+
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v8=qAJ44G5Bm7" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v8=qAJ44G5Bm7" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v8=qAJ44G5Bm7" color="#885bd5" />
+    <link rel="shortcut icon" href="/favicon.ico?v8=qAJ44G5Bm7" />
+    <meta name="msapplication-TileColor" content="#603cba" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#6c63ff" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v8=qAJ44G5Bm7" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Emilio Gozo</title>
+  </head>
+  <body class="font-montserrat antialiased flex flex-col w-9/10 mx-auto my-4 md:my-8 px-2 py-4 space-y-4 md:space-y-8">
+    <Header />
+    <Greeting />
+    <Skills />
+    {ghProfile && <Projects prof={ghProfile} />}
+    {ghProfile && <Profile prof={ghProfile} />}
+    <Footer />
+    <TopButton />
+  </body>
+</html>

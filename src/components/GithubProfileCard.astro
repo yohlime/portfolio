@@ -1,0 +1,31 @@
+---
+import SocialMedia from './SocialMedia.astro'
+
+import { contactInfo } from '../data/portfolio'
+
+const { prof } = Astro.props
+---
+
+<h1 class="text-xl md:text-3xl">Let's talk...</h1>
+<div class="flex flex-col md:flex-row">
+  <div class="flex flex-col md:w-4/5 gap-1">
+    <p class="text-lg md:text-xl text-subtitle">{contactInfo.subtitle}</p>
+    <h2 class="text-lg md:text-xl">"{prof.bio}"</h2>
+    {
+      prof.location !== null && (
+        <div class="flex items-center gap-1">
+          <span class="i-fa6-solid-location-dot" />
+          <span class="text-sm md:text-base font-thin">{prof.location}</span>
+        </div>
+      )
+    }
+    <SocialMedia />
+  </div>
+  <div class="mx-auto w-3/5 md:w-1/5 md:h-auto order-first md:order-last">
+    <img
+      src={prof.avatarUrl}
+      alt={prof.name}
+      class="rounded-full border border-default border-4 hover:shadow-sm hover:shadow-default transition-shadow duration-300 ease-in"
+    />
+  </div>
+</div>
