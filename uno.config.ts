@@ -7,8 +7,11 @@ export default defineConfig({
   presets: [presetUno(), presetIcons()],
   theme: {
     colors: {
-      default: '#55198b',
       subtitle: '#868e96',
+      button: '#55198b',
+      'button-hover': '#8c43ce',
+      nav: '#f4f4f4',
+      'nav-alt': '#8c43ce',
     },
     fontFamily: {
       agustina: 'Agustina Regular',

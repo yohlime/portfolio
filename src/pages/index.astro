@@ -27,7 +27,9 @@ const ghProfile = await fetchProfile()
     <meta name="generator" content={Astro.generator} />
     <title>Emilio Gozo</title>
   </head>
-  <body class="font-montserrat antialiased flex flex-col w-9/10 mx-auto my-4 md:my-8 px-2 py-4 space-y-4 md:space-y-8">
+  <body
+    class="font-montserrat antialiased flex flex-col w-9/10 mx-auto my-8 md:my-12 gap-4 md:gap-8 bg-white text-black dark:bg-slate-900 dark:text-white"
+  >
     <Header />
     <Greeting />
     <Skills />
