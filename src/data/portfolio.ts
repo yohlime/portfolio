@@ -25,48 +25,7 @@ export const skillsSection = {
   /* Make Sure You include correct Font Awesome Classname to view your icon
 https://fontawesome.com/icons?d=gallery */
 
-  softwareSkills: [
-    {
-      skillName: 'html-5',
-      fontAwesomeClassname: 'fab fa-html5',
-    },
-    {
-      skillName: 'css3',
-      fontAwesomeClassname: 'fab fa-css3-alt',
-    },
-    {
-      skillName: 'JavaScript',
-      fontAwesomeClassname: 'fab fa-js',
-    },
-    {
-      skillName: 'reactjs',
-      fontAwesomeClassname: 'fab fa-react',
-    },
-    {
-      skillName: 'nodejs',
-      fontAwesomeClassname: 'fab fa-node',
-    },
-    {
-      skillName: 'npm',
-      fontAwesomeClassname: 'fab fa-npm',
-    },
-    {
-      skillName: 'sql-database',
-      fontAwesomeClassname: 'fas fa-database',
-    },
-    {
-      skillName: 'python',
-      fontAwesomeClassname: 'fab fa-python',
-    },
-    {
-      skillName: 'php',
-      fontAwesomeClassname: 'fab fa-php',
-    },
-    {
-      skillName: 'laravel',
-      fontAwesomeClassname: 'fab fa-laravel',
-    },
-  ],
+  softwareSkills: ['html', 'css', 'js', 'react', 'nodejs', 'python', 'php', 'laravel', 'golang', 'rust'],
 }
 
 export const openSource = {
