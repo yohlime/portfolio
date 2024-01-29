@@ -1,0 +1,27 @@
+---
+import { useStoryblokApi } from '@storyblok/astro'
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
+
+import type { SbBlogPost } from '@/types/storyblok'
+
+import { getStoryRes } from '@/schemas/storyblok'
+
+import DefaultLayout from '@/layouts/Default.astro'
+
+const storyblokApi = useStoryblokApi()
+const slug = Astro.params.slug
+let content: SbBlogPost['content']
+try {
+  const { data } = await storyblokApi.get(`cdn/stories/blog/${slug}`, {
+    version: import.meta.env.DEV ? 'draft' : 'published',
+  })
+  const sbData = getStoryRes.parse(data)
+  content = sbData.story.content
+} catch (error) {
+  return Astro.redirect('/404')
+}
+---
+
+<DefaultLayout title="Emil's Blog">
+  <StoryblokComponent blok={content} />
+</DefaultLayout>

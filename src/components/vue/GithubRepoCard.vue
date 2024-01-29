@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-  import type { GHRepo } from '../types/github'
+  import type { GHRepo } from '@/types/github'
 
   defineProps<{ data: GHRepo }>()
 </script>

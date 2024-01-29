@@ -1,33 +1,37 @@
 ---
-import MenuToggle from './MenuToggle.astro'
-import ThemeButton from './ThemeButton.vue'
+import MenuToggle from '@/components/MenuToggle.astro'
+import ThemeButton from '@/components/vue/ThemeButton.vue'
 
-import { greeting } from '../data/portfolio'
+import { greeting } from '@/data/portfolio'
 ---
 
 <header class="relative flex justify-between items-center">
-  <a href="" class="text-2xl md:text-3xl">
+  <a href="/" class="text-2xl md:text-3xl">
     <span class="text-gray-400"> &lt;</span>
     <span class="font-bold font-agustina mx-1 text-default">{greeting.username}</span>
     <span class="text-gray-400">/&gt;</span>
   </a>
 
-  <MenuToggle className={'peer md:hidden'} />
+  <MenuToggle class="peer md:hidden" />
 
   <ul
     class="absolute w-full md:w-auto top-10 md:top-0 md:right-0 bg-white dark:bg-slate-900 flex flex-col md:text-xl md:flex-row md:gap-4 md:items-center clear-both overflow-hidden max-h-0 md:max-h-max peer-has-[:checked]:max-h-max transition-max-height duration-200 ease-out"
   >
     <li>
-      <a href="#skills" class="block p-3 text-black hover:bg-nav dark:text-white dark:hover:bg-nav-alt">Skills</a>
+      <a href="/blog" class="block p-3 text-black hover:bg-nav dark:text-white dark:hover:bg-nav-alt">Blog</a>
     </li>
     <li>
-      <a href="#opensource" class="block p-3 text-black hover:bg-nav dark:text-white dark:hover:bg-nav-alt"
+      <a href="/#skills" class="block p-3 text-black hover:bg-nav dark:text-white dark:hover:bg-nav-alt">Skills</a>
+    </li>
+    <li>
+      <a href="/#opensource" class="block p-3 text-black hover:bg-nav dark:text-white dark:hover:bg-nav-alt"
         >Open Source</a
       >
     </li>
     <li>
-      <a href="#contact" class="block p-3 text-black hover:bg-nav dark:text-white dark:hover:bg-nav-alt">Contact Me</a>
+      <a href="/#contact" class="block p-3 text-black hover:bg-nav dark:text-white dark:hover:bg-nav-alt">Contact Me</a>
     </li>
+
     <li class="pl-2 md:pl-0">
       <ThemeButton client:load />
     </li>

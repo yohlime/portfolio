@@ -10,26 +10,31 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.3.4",
+    "@astrojs/check": "^0.4.1",
     "@astrojs/netlify": "^5.0.0",
     "@astrojs/vue": "^4.0.8",
-    "@iconify-json/codicon": "^1.1.41",
     "@nanostores/persistent": "^0.9.1",
     "@nanostores/vue": "^0.10.0",
-    "astro": "^4.0.7",
+    "@storyblok/astro": "^4.0.2",
+    "@wdns/vue-code-block": "^2.3.1",
+    "astro": "^4.2.6",
     "axios": "^1.6.2",
+    "date-fns": "^3.3.1",
     "nanostores": "^0.9.5",
     "typescript": "^5.3.3",
+    "vite": "^5.0.12",
     "vue": "^3.4.15",
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@iconify-json/codicon": "^1.1.41",
     "@iconify-json/emojione": "^1.1.10",
     "@iconify-json/fa6-brands": "^1.1.18",
     "@iconify-json/fa6-solid": "^1.1.20",
-    "@unocss/preset-icons": "^0.58.0",
-    "@unocss/preset-uno": "^0.58.0",
-    "@unocss/reset": "^0.58.0",
-    "unocss": "^0.58.0"
+    "@types/clone-deep": "^4.0.4",
+    "@unocss/reset": "^0.58.4",
+    "@vitejs/plugin-basic-ssl": "^1.1.0",
+    "storyblok-rich-text-astro-renderer": "^2.1.1",
+    "unocss": "^0.58.4"
   }
 }

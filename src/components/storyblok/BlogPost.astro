@@ -1,0 +1,33 @@
+---
+import { storyblokEditable } from '@storyblok/astro'
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
+
+import type { SbBlogPost } from '@/types/storyblok'
+
+interface Props {
+  blok: SbBlogPost['content']
+}
+const { blok } = Astro.props
+
+const story = {
+  content: { component: 'rich_text', text: blok.content },
+}
+---
+
+<article
+  {...storyblokEditable(blok)}
+  class="mx-auto prose shadow-lg dark:prose-invert dark:shadow-sm dark:shadow-white p-8 rounded-xl"
+>
+  {
+    blok.featured_image.filename && (
+      <img
+        class="w-full h-60 lg:h-80 object-cover"
+        alt={blok.featured_image.alt ?? ''}
+        src={`${blok.featured_image.filename}${blok.featured_image.is_external_url ? '' : '/m/'}`}
+      />
+    )
+  }
+  <h1>{blok.title}</h1>
+
+  <StoryblokComponent blok={story.content} />
+</article>

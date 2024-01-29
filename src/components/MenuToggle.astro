@@ -1,8 +1,8 @@
 ---
 interface Props {
-  className: string
+  class: string
 }
-const { className } = Astro.props
+const { class: className } = Astro.props
 ---
 
 <div class:list={['relative gap-4px flex flex-col cursor-pointer border border-2 p-2 rounded-md', className]}>

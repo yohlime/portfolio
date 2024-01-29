@@ -1,10 +1,26 @@
-import { defineConfig } from 'unocss'
-
-import presetIcons from '@unocss/preset-icons'
-import presetUno from '@unocss/preset-uno'
+import { defineConfig, presetIcons, presetTypography, presetUno } from 'unocss'
 
 export default defineConfig({
-  presets: [presetUno(), presetIcons()],
+  presets: [
+    presetUno(),
+    presetIcons(),
+    presetTypography({
+      cssExtend: {
+        a: {
+          color: '#55198b',
+        },
+        'a:hover, a:visited': {
+          color: '#8c43ce',
+        },
+        '.dark a': {
+          color: '#f4f4f4',
+        },
+        '.dark a:hover,.dark a:visited': {
+          color: '#ffffff',
+        },
+      },
+    }),
+  ],
   theme: {
     colors: {
       subtitle: '#868e96',
@@ -34,7 +50,7 @@ export default defineConfig({
           src: local('Montserrat'), url('/fonts/Montserrat-Regular.ttf') format('woff');
           font-display: swap;
         }
-       `
+        `
       },
     },
   ],

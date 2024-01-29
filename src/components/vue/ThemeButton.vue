@@ -8,7 +8,7 @@
   import { useVModel } from '@nanostores/vue'
   import { onMounted } from 'vue'
 
-  import { $theme } from '../stores/style'
+  import { $theme } from '@/stores/style'
 
   const theme = useVModel($theme)
 

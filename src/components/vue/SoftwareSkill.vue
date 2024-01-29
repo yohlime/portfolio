@@ -52,7 +52,7 @@
 </template>
 
 <script setup lang="ts">
-  import { skillsSection } from '../data/portfolio'
+  import { skillsSection } from '@/data/portfolio'
 </script>
 
 <style>

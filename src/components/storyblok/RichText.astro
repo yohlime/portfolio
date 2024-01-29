@@ -1,0 +1,37 @@
+---
+import { storyblokEditable } from '@storyblok/astro'
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
+import type { RichTextType } from 'storyblok-rich-text-astro-renderer'
+import RichTextRenderer from 'storyblok-rich-text-astro-renderer/RichTextRenderer.astro'
+
+import CodeBlock from '@/components/CodeBlock.astro'
+
+export interface Props {
+  blok: {
+    text: RichTextType
+  }
+}
+
+const { blok } = Astro.props
+---
+
+<RichTextRenderer
+  content={blok.text}
+  schema={{
+    nodes: {
+      code_block: ({ attrs }) => ({
+        component: CodeBlock,
+        props: {
+          lang: attrs.class.split('-')[1],
+        },
+      }),
+    },
+  }}
+  resolver={(blok) => {
+    return {
+      component: StoryblokComponent,
+      props: { blok },
+    }
+  }}
+  {...storyblokEditable(blok)}
+/>
