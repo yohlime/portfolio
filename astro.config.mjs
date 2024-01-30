@@ -18,6 +18,7 @@ export default defineConfig({
     vue(),
     storyblok({
       accessToken: storyblokEnv.STORYBLOK_TOKEN,
+      bridge: import.meta.env.VITE_ENVIRONMENT === 'preview' ? true : false,
       components: {
         blogPost: 'components/storyblok/BlogPost',
         blogPostList: 'components/storyblok/BlogPostList',
@@ -27,8 +28,8 @@ export default defineConfig({
       apiOptions: {},
     }),
   ],
-  output: 'server',
-  adapter: netlify(),
+  output: import.meta.env.VITE_ENVIRONMENT === 'preview' ? 'server' : 'static',
+  adapter: import.meta.env.VITE_ENVIRONMENT === 'preview' ? netlify() : undefined,
   vite: {
     plugins: [basicSsl()],
     server: {

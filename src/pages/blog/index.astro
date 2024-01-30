@@ -2,13 +2,13 @@
 import { useStoryblokApi } from '@storyblok/astro'
 import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
 
-import DefaultLayout from '../../layouts/Default.astro'
+import DefaultLayout from '@/layouts/Default.astro'
 
 const storyblokApi = useStoryblokApi()
 const { data } = await storyblokApi.get('cdn/stories/home', {
-  version: import.meta.env.DEV ? 'draft' : 'published',
+  version: import.meta.env.VITE_ENVIRONMENT === 'preview' ? 'draft' : 'published',
 })
-const content = data.story.content
+const { content } = data.story
 ---
 
 <DefaultLayout title="Emil's Blog">

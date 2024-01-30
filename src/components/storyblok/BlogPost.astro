@@ -19,7 +19,7 @@ const story = {
   class="mx-auto prose shadow-lg dark:prose-invert dark:shadow-sm dark:shadow-white p-8 rounded-xl"
 >
   {
-    blok.featured_image.filename && (
+    blok.featured_image?.filename && (
       <img
         class="w-full h-60 lg:h-80 object-cover"
         alt={blok.featured_image.alt ?? ''}

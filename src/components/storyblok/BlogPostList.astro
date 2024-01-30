@@ -7,7 +7,7 @@ import { listStoriesRes } from '@/schemas/storyblok'
 const storyblokApi = useStoryblokApi()
 
 const { data } = await storyblokApi.get('cdn/stories', {
-  version: import.meta.env.DEV ? 'draft' : 'published',
+  version: import.meta.env.VITE_ENVIRONMENT === 'preview' ? 'draft' : 'published',
   content_type: 'blogPost',
 })
 
@@ -23,10 +23,10 @@ const { blok } = Astro.props
   {
     sbData.stories.map(({ full_slug, published_at, content }) => (
       <a
-        href={full_slug}
+        href={`/${full_slug}`}
         class="flex flex-col items-center md:flex-row md:max-w-lg bg-white border border-gray-200 rounded-lg shadow  hover:bg-gray-100 dark:border-gray-700 dark:bg-slate-900 dark:hover:shadow-sm dark:hover:shadow-white dark:hover:bg-button-hover transition-shadow duration-300 ease-in"
       >
-        {content.featured_image.filename && (
+        {content.featured_image?.filename && (
           <img
             class="object-cover rounded-t-lg w-full h-54 md:h-full md:w-48 md:rounded-none md:rounded-s-lg"
             src={`${content.featured_image.filename}${content.featured_image.is_external_url ? '' : '/m/'}`}

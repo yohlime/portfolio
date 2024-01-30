@@ -5,7 +5,11 @@ import type { ISbRichtext, SbBlokData } from '@storyblok/astro'
 const makeSbStory = <T extends z.ZodTypeAny>(schema: T) => {
   const content = z.intersection(
     schema,
-    z.object({ _uid: z.string().uuid(), _editable: z.string(), component: z.string() }) as z.Schema<SbBlokData>
+    z.object({
+      _uid: z.string().uuid(),
+      _editable: z.string().optional(),
+      component: z.string(),
+    }) as z.Schema<SbBlokData>
   )
   return z.object({
     id: z.number(),
@@ -53,7 +57,7 @@ export const blogPostStoryblok = makeSbStory(
   z.object({
     title: z.string(),
     description: z.string().nullish(),
-    featured_image: assetStoryblok,
+    featured_image: assetStoryblok.optional(),
     content: richtextStoryblok,
   })
 )
