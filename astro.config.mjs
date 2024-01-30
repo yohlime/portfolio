@@ -1,6 +1,7 @@
-import basicSsl from '@vitejs/plugin-basic-ssl'
 import { defineConfig } from 'astro/config'
 import { loadEnv } from 'vite'
+
+import mkcert from 'vite-plugin-mkcert'
 
 import netlify from '@astrojs/netlify'
 import vue from '@astrojs/vue'
@@ -31,9 +32,6 @@ export default defineConfig({
   output: import.meta.env.VITE_ENVIRONMENT === 'preview' ? 'server' : 'static',
   adapter: import.meta.env.VITE_ENVIRONMENT === 'preview' ? netlify() : undefined,
   vite: {
-    plugins: [basicSsl()],
-    server: {
-      https: true,
-    },
+    plugins: [mkcert()],
   },
 })
