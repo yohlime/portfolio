@@ -11,6 +11,14 @@ const { data } = await storyblokApi.get('cdn/stories/home', {
 const { content } = data.story
 ---
 
-<DefaultLayout title="Emil's Blog">
+<DefaultLayout
+  title="Blog by Emilio Gozo"
+  openType={{
+    title: 'Blog List - Emilio Gozo',
+    description:
+      'Explore our latest blog posts covering programming and data science, with a special focus on weather and climate topics. Stay informed and discover insights at the intersection of technology and environmental science.',
+    type: 'article',
+  }}
+>
   <StoryblokComponent blok={content} />
 </DefaultLayout>

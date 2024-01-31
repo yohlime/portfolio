@@ -3,7 +3,18 @@ import Footer from '../components/Footer.astro'
 import Header from '../components/Header.astro'
 import TopButton from '../components/TopButton.astro'
 
-const { title } = Astro.props
+interface Props {
+  title: string
+  openType?: {
+    title?: string
+    image?: string
+    type?: 'website' | 'article'
+    description?: string
+  }
+}
+const { title, openType } = Astro.props
+
+const twCreator = '@emiliogozo'
 ---
 
 <html lang="en" class="scroll-smooth">
@@ -14,12 +25,30 @@ const { title } = Astro.props
     <link rel="mask-icon" href="/safari-pinned-tab.svg?v8=qAJ44G5Bm7" color="#885bd5" />
     <link rel="shortcut icon" href="/favicon.ico?v8=qAJ44G5Bm7" />
     <meta name="msapplication-TileColor" content="#603cba" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#6c63ff" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v8=qAJ44G5Bm7" />
     <meta name="generator" content={Astro.generator} />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    <meta name="author" content="Emilio Gozo" />
+    <meta name="keywords" content="programming, data science, weather, climate, technology" />
+    <link rel="canonical" href={Astro.url.href} />
+    <meta http-equiv="content-language" content="en" />
+    <meta name="robots" content="index, follow" />
+
+    <meta property="og:title" content={openType?.title || title} />
+    {openType?.description && <meta property="og:description" content={openType.description} />}
+    <meta property="og:url" content={Astro.url.href} />
+    {openType?.image && <meta property="og:image" content={openType.image} />}
+    <meta property="og:type" content={openType?.type || 'website'} />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={openType?.title || title} />
+    {openType?.description && <meta name="twitter:description" content={openType.description} />}
+    {openType?.image && <meta name="twitter:image" content={openType.image} />}
+    <meta name="twitter:site" content={twCreator} />
   </head>
   <body
     class="font-montserrat antialiased flex flex-col w-9/10 mx-auto my-8 md:my-12 gap-4 md:gap-8 bg-white text-black dark:bg-slate-900 dark:text-white"

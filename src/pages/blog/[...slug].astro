@@ -41,6 +41,14 @@ try {
 }
 ---
 
-<DefaultLayout title="Emil's Blog">
+<DefaultLayout
+  title=`${content.title} by Emilio Gozo`
+  openType={{
+    title: content.title,
+    description: content.description ?? undefined,
+    image: content.featured_image?.filename,
+    type: 'article',
+  }}
+>
   <StoryblokComponent blok={content} />
 </DefaultLayout>
