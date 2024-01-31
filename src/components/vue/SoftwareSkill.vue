@@ -1,5 +1,5 @@
 <template>
-  <ul class="flex text-3xl md:text-5xl gap-2 justify-center items-center">
+  <ul class="flex flex-wrap text-3xl md:text-5xl gap-2 justify-center items-center">
     <li v-if="skillsSection.softwareSkills.includes('html')" class="software-skill-inline">
       <div class="i-fa6-brands-html5"></div>
       <span>HTML</span>
