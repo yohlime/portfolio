@@ -34,6 +34,9 @@ export default defineConfig({
       montserrat: 'Montserrat',
     },
   },
+  shortcuts: {
+    'social-media-badge': 'rounded-full  hover:bg-black transition duration-300 ease-in ',
+  },
   preflights: [
     {
       getCSS() {

@@ -5,12 +5,12 @@ export const greeting = {
   resumeLink: 'https://linkedin.com/in/emiliogozo',
 }
 
-type SocialMedia = 'github' | 'linkedin' | 'gitlab' | 'gmail' | 'twitter' | 'facebook' | 'instagram'
+type SocialMedia = 'github' | 'linkedin' | 'gitlab' | 'twitter' | 'xTwitter' | 'facebook' | 'instagram' | 'mastodon'
 export const socialMediaLinks: Partial<Record<SocialMedia, string>> = {
   github: 'https://github.com/atsuyaourt',
   linkedin: 'http://linkedin.com/in/emiliogozo',
-  gmail: 'emil.gozo@gmail.com',
-  twitter: 'http://twitter.com/emiliogozo',
+  xTwitter: 'http://twitter.com/emiliogozo',
+  mastodon: 'https://hachyderm.io/@atsuyaourt',
 }
 
 export const skillsSection = {
