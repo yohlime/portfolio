@@ -12,10 +12,13 @@ import { greeting } from '@/data/portfolio'
     <span class="text-gray-400">/&gt;</span>
   </a>
 
-  <MenuToggle class="peer md:hidden" />
+  <div class="peer flex gap-1.5">
+    <ThemeButton client:load />
+    <MenuToggle class="md:hidden" />
+  </div>
 
   <ul
-    class="absolute w-full md:w-auto top-10 md:top-0 md:right-0 bg-white dark:bg-slate-900 flex flex-col md:text-xl md:flex-row md:gap-4 md:items-center clear-both overflow-hidden max-h-0 md:max-h-max peer-has-[:checked]:max-h-max transition-max-height duration-200 ease-out"
+    class="absolute z-36 w-full md:w-auto top-10 md:top-0 md:right-0 bg-white dark:bg-slate-900 flex flex-col md:text-xl md:flex-row md:gap-4 md:items-center clear-both overflow-hidden max-h-0 md:max-h-max peer-has-[:checked]:max-h-max transition-max-height duration-200 ease-out"
   >
     <li>
       <a href="/blog" class="block p-3 text-black hover:bg-nav dark:text-white dark:hover:bg-nav-alt">Blog</a>
@@ -32,8 +35,8 @@ import { greeting } from '@/data/portfolio'
       <a href="/#contact" class="block p-3 text-black hover:bg-nav dark:text-white dark:hover:bg-nav-alt">Contact Me</a>
     </li>
 
-    <li class="pl-2 md:pl-0">
-      <ThemeButton client:load />
+    <li class="pl-2 pb-2 md:pl-0 md:pb-0">
+      <ThemeButton class="hidden md:block" client:load />
     </li>
   </ul>
 </header>
