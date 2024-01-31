@@ -1,5 +1,14 @@
 <template>
-  <VCodeBlock v-if="codeStr" :code="codeStr" highlightjs :lang="lang" :theme="theme" class="not-prose" />
+  <div class="flex justify-center">
+    <VCodeBlock
+      v-if="codeStr"
+      :code="codeStr"
+      highlightjs
+      :lang="lang"
+      :theme="theme"
+      class="not-prose text-xs md:text-sm w-full sm:w-md md:w-lg lg:w-xl"
+    />
+  </div>
   <span hidden ref="rawcode"><slot></slot></span>
 </template>
 
