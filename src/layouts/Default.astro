@@ -5,16 +5,17 @@ import TopButton from '../components/TopButton.astro'
 
 interface Props {
   title: string
-  openType?: {
+  openGraph?: {
     title?: string
     image?: string
     type?: 'website' | 'article'
     description?: string
   }
 }
-const { title, openType } = Astro.props
+const { title, openGraph } = Astro.props
 
 const twCreator = '@emiliogozo'
+const canonical = `${import.meta.env.URL}${Astro.url.pathname}`
 ---
 
 <html lang="en" class="scroll-smooth">
@@ -33,21 +34,21 @@ const twCreator = '@emiliogozo'
     <title>{title}</title>
     <meta name="author" content="Emilio Gozo" />
     <meta name="keywords" content="programming, data science, weather, climate, technology" />
-    <link rel="canonical" href={Astro.url.href} />
+    <link rel="canonical" href={canonical} />
     <meta http-equiv="content-language" content="en" />
     <meta name="robots" content="index, follow" />
 
-    <meta property="og:title" content={openType?.title || title} />
-    {openType?.description && <meta property="og:description" content={openType.description} />}
-    <meta property="og:url" content={Astro.url.href} />
-    {openType?.image && <meta property="og:image" content={openType.image} />}
-    <meta property="og:type" content={openType?.type || 'website'} />
+    <meta property="og:title" content={openGraph?.title || title} />
+    {openGraph?.description && <meta property="og:description" content={openGraph.description} />}
+    <meta property="og:url" content={canonical} />
+    {openGraph?.image && <meta property="og:image" content={openGraph.image} />}
+    <meta property="og:type" content={openGraph?.type || 'website'} />
     <meta property="og:locale" content="en_US" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={openType?.title || title} />
-    {openType?.description && <meta name="twitter:description" content={openType.description} />}
-    {openType?.image && <meta name="twitter:image" content={openType.image} />}
+    <meta name="twitter:title" content={openGraph?.title || title} />
+    {openGraph?.description && <meta name="twitter:description" content={openGraph.description} />}
+    {openGraph?.image && <meta name="twitter:image" content={openGraph.image} />}
     <meta name="twitter:site" content={twCreator} />
   </head>
   <body
