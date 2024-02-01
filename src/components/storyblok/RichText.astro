@@ -4,7 +4,7 @@ import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
 import type { RichTextType } from 'storyblok-rich-text-astro-renderer'
 import RichTextRenderer from 'storyblok-rich-text-astro-renderer/RichTextRenderer.astro'
 
-import CodeBlock from '@/components/CodeBlock.astro'
+import { Code } from 'astro:components'
 
 export interface Props {
   blok: {
@@ -20,9 +20,10 @@ const { blok } = Astro.props
   schema={{
     nodes: {
       code_block: ({ attrs }) => ({
-        component: CodeBlock,
+        component: Code,
         props: {
           lang: attrs.class.split('-')[1],
+          contentPropName: 'code',
         },
       }),
     },
