@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yohli.me/sitemap-index.xml

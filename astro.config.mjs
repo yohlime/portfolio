@@ -4,6 +4,7 @@ import { loadEnv } from 'vite'
 import mkcert from 'vite-plugin-mkcert'
 
 import netlify from '@astrojs/netlify'
+import sitemap from '@astrojs/sitemap'
 import vue from '@astrojs/vue'
 import storyblok from '@storyblok/astro'
 import UnoCSS from 'unocss/astro'
@@ -29,6 +30,7 @@ export default defineConfig({
       },
       apiOptions: {},
     }),
+    sitemap(),
   ],
   output: import.meta.env.VITE_ENVIRONMENT === 'preview' ? 'server' : 'static',
   adapter: import.meta.env.VITE_ENVIRONMENT === 'preview' ? netlify() : undefined,
