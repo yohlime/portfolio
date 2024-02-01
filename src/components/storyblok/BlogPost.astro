@@ -2,6 +2,7 @@
 import { storyblokEditable } from '@storyblok/astro'
 import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
 
+import Disqus from '@/components/vue/Disqus.vue'
 import type { SbBlogPost } from '@/types/storyblok'
 
 interface Props {
@@ -30,4 +31,6 @@ const story = {
   <h1>{blok.title}</h1>
 
   <StoryblokComponent blok={story.content} />
+
+  <Disqus client:load />
 </article>
