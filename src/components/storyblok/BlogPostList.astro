@@ -28,14 +28,14 @@ const { blok } = Astro.props
       >
         {content.featured_image?.filename && (
           <img
-            class="object-cover rounded-t-lg w-full h-54 md:h-full md:w-48 md:rounded-none md:rounded-s-lg"
+            class="object-cover rounded-t-lg w-full h-54 md:h-full md:w-48 md:min-h-48 md:rounded-none md:rounded-s-lg"
             src={`${content.featured_image.filename}${content.featured_image.is_external_url ? '' : '/m/'}`}
             alt={content.featured_image.alt ?? ''}
           />
         )}
         <div class="flex flex-col w-full justify-between p-4 leading-normal">
           <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{content.title}</h5>
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{content.description}</p>
+          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 line-clamp-3">{content.description}</p>
           {published_at && (
             <span class="text-xs text-right text-gray-500 dark-text-gray-300">
               {formatDistance(published_at, new Date(), { addSuffix: true })}
