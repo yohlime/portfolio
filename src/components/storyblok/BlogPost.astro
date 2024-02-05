@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets'
+
 import { storyblokEditable } from '@storyblok/astro'
 import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
 
@@ -21,10 +23,14 @@ const story = {
 >
   {
     blok.featured_image?.filename && (
-      <img
+      <Image
         class="w-full h-60 lg:h-80 object-cover"
         alt={blok.featured_image.alt ?? ''}
-        src={`${blok.featured_image.filename}${blok.featured_image.is_external_url ? '' : '/m/'}`}
+        src={`${blok.featured_image.filename}${
+          blok.featured_image.is_external_url ? '' : '/m/900x400/filters:format(webp)'
+        }`}
+        height="400"
+        width="900"
       />
     )
   }
