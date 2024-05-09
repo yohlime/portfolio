@@ -10,21 +10,21 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.4.1",
-    "@astrojs/netlify": "^5.0.1",
-    "@astrojs/sitemap": "^3.0.5",
-    "@astrojs/vue": "^4.0.8",
+    "@astrojs/check": "^0.6.0",
+    "@astrojs/netlify": "^5.2.1",
+    "@astrojs/sitemap": "^3.1.4",
+    "@astrojs/vue": "^4.2.0",
     "@nanostores/persistent": "^0.9.1",
     "@nanostores/vue": "^0.10.0",
-    "@storyblok/astro": "^4.0.2",
-    "astro": "^4.3.2",
+    "@storyblok/astro": "^4.0.5",
+    "astro": "^4.8.0",
     "axios": "^1.6.2",
     "date-fns": "^3.3.1",
     "nanostores": "^0.9.5",
     "sharp": "^0.33.2",
     "typescript": "^5.3.3",
     "vite": "^5.0.13",
-    "vue": "^3.4.15",
+    "vue": "^3.4.27",
     "zod": "^3.22.4"
   },
   "devDependencies": {
@@ -38,3 +38,4 @@
     "vite-plugin-mkcert": "^1.17.3"
   }
 }
+
