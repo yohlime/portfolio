@@ -1,2 +1,12 @@
+[build]
+  command = "pnpm build"
+  publish = "dist"
+
 [images]
-	remote_images = ["https://*"]
+remote_images = ["https://*"]
+
+[[redirects]]
+from = "/.well-known/*"
+to = "/well-known/:splat"
+status = 200
+force = true
