@@ -7,10 +7,10 @@ export const greeting = {
 
 type SocialMedia = 'github' | 'linkedin' | 'gitlab' | 'twitter' | 'xTwitter' | 'facebook' | 'instagram' | 'mastodon'
 export const socialMediaLinks: Partial<Record<SocialMedia, string>> = {
-  github: 'https://github.com/atsuyaourt',
+  github: 'https://github.com/yohlime',
   linkedin: 'http://linkedin.com/in/emiliogozo',
   xTwitter: 'http://twitter.com/emiliogozo',
-  mastodon: 'https://hachyderm.io/@atsuyaourt',
+  mastodon: 'https://hachyderm.io/@yohlime',
 }
 
 export const skillsSection = {
@@ -29,12 +29,12 @@ https://fontawesome.com/icons?d=gallery */
 }
 
 export const openSource = {
-  githubUserName: 'atsuyaourt',
+  githubUserName: 'yohlime',
   showGithubProfile: 'true', // Set true or false to show Contact profile using Github, defaults to
 }
 
 export const contactInfo = {
   title: 'Contact Me',
   subtitle: 'Discuss a project or just want to say hi? My Inbox is open for all.',
-  email_address: 'emiliogozo@protone.me',
+  email_address: 'freelance.han44@aleeas.com',
 }

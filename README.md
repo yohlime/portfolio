@@ -13,7 +13,7 @@ To get a copy of this project up and running on your local machine, follow these
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/atsuyaourt/portfolio.git ${LOCAL_PATH}
+   git clone https://github.com/yohlime/portfolio.git ${LOCAL_PATH}
    cd ${LOCAL_PATH}
    ```
 
