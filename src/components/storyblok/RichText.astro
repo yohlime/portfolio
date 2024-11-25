@@ -13,19 +13,24 @@ export interface Props {
 }
 
 const { blok } = Astro.props
+const { text } = blok
 ---
 
 <RichTextRenderer
-  content={blok.text}
+  content={text}
   schema={{
     nodes: {
-      code_block: ({ attrs }) => ({
-        component: Code,
-        props: {
-          lang: attrs.class.split('-')[1],
-          contentPropName: 'code',
-        },
-      }),
+      code_block: ({ attrs, content }) => {
+        const lang = attrs.class?.split('-')?.[1]
+        const code = content?.[0]?.text
+        return {
+          component: Code,
+          props: {
+            lang,
+            code,
+          },
+        }
+      },
     },
   }}
   resolver={(blok) => {

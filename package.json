@@ -10,32 +10,33 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.6.0",
-    "@astrojs/netlify": "^5.2.1",
-    "@astrojs/sitemap": "^3.1.4",
-    "@astrojs/vue": "^4.2.0",
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/netlify": "^5.5.4",
+    "@astrojs/sitemap": "^3.2.1",
+    "@astrojs/vue": "^4.5.3",
     "@nanostores/persistent": "^0.9.1",
     "@nanostores/vue": "^0.10.0",
-    "@storyblok/astro": "^4.0.5",
-    "astro": "^4.8.0",
-    "axios": "^1.6.2",
-    "date-fns": "^3.3.1",
+    "@storyblok/astro": "^5.0.2",
+    "astro": "^4.16.14",
+    "axios": "^1.7.7",
+    "date-fns": "^3.6.0",
     "nanostores": "^0.9.5",
-    "sharp": "^0.33.2",
-    "typescript": "^5.3.3",
-    "vite": "^5.0.13",
-    "vue": "^3.4.27",
-    "zod": "^3.22.4"
+    "sharp": "^0.33.5",
+    "typescript": "^5.7.2",
+    "vite": "^5.4.11",
+    "vue": "^3.5.13",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@iconify-json/codicon": "^1.1.41",
-    "@iconify-json/emojione": "^1.1.10",
-    "@iconify-json/fa6-brands": "^1.1.18",
-    "@iconify-json/fa6-solid": "^1.1.20",
-    "@unocss/reset": "^0.58.4",
-    "storyblok-rich-text-astro-renderer": "file:./local/storyblok-rich-text-astro-renderer-2.1.2-beta.tgz",
-    "unocss": "^0.58.4",
-    "vite-plugin-mkcert": "^1.17.3"
+    "@iconify-json/codicon": "^1.2.3",
+    "@iconify-json/emojione": "^1.2.0",
+    "@iconify-json/fa6-brands": "^1.2.3",
+    "@iconify-json/fa6-solid": "^1.2.2",
+    "@unocss/reset": "^0.58.9",
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "storyblok-rich-text-astro-renderer": "^2.2.2",
+    "unocss": "^0.58.9",
+    "vite-plugin-mkcert": "^1.17.6"
   }
 }
-
