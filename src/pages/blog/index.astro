@@ -9,6 +9,8 @@ const { data } = await storyblokApi.get('cdn/stories/home', {
   version: import.meta.env.DEV ? 'draft' : 'published',
 })
 const { content } = data.story
+
+const openGraphImg = `${import.meta.env.URL}/cover-blogs.jpeg`
 ---
 
 <DefaultLayout
@@ -18,7 +20,7 @@ const { content } = data.story
     description:
       'Explore our latest blog posts covering programming and data science, with a special focus on weather and climate topics. Stay informed and discover insights at the intersection of technology and environmental science.',
     type: 'article',
-    image: `${import.meta.env.URL}/cover-blogs.jpeg`,
+    image: openGraphImg,
   }}
 >
   <StoryblokComponent blok={content} />

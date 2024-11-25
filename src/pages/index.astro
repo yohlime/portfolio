@@ -9,9 +9,10 @@ import Projects from '../sections/Projects.astro'
 import Skills from '../sections/Skills.astro'
 
 const ghProfile = await fetchProfile()
+const openGraphImg = `${import.meta.env.URL}/portfolio-greeting.png`
 ---
 
-<DefaultLayout title="Emilio Gozo" openGraph={{ image: `${import.meta.env.URL}/portfolio-greeting.png` }}>
+<DefaultLayout title="Emilio Gozo" openGraph={{ image: openGraphImg }}>
   <Greeting />
   <Skills />
   {ghProfile && <Projects prof={ghProfile} />}
