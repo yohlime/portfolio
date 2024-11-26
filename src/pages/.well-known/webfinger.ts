@@ -1,6 +1,6 @@
 export async function GET() {
   const wf = {
-    subject: 'acct:yohlime@hachyderm.io',
+    subject: 'acct:emil@yohli.me',
     aliases: ['https://hachyderm.io/@yohlime', 'https://hachyderm.io/users/yohlime'],
     links: [
       {
