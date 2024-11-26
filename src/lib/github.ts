@@ -35,17 +35,20 @@ const query = `
 }
 `
 
-export const fetchProfile = async () => {
+export const fetchProfile = async (ghToken: string) => {
   const { data, status } = await axios.post(
     'https://api.github.com/graphql',
     { query },
     {
       headers: {
-        Authorization: `Bearer ${import.meta.env.GITHUB_TOKEN}`,
+        Authorization: `Bearer ${ghToken}`,
         'User-Agent': 'Node',
       },
-    }
+    },
   )
 
-  if (status === 200) return ghProfile.parse(data).data.user
+  if (status === 200) {
+    const d = ghProfile.safeParse(data)
+    if (d.success) return d.data.data.user
+  }
 }
