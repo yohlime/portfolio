@@ -15,7 +15,7 @@ interface Props {
 const { title, openGraph } = Astro.props
 
 const twCreator = '@emiliogozo'
-const canonical = `${import.meta.env.URL}${Astro.url.pathname}`
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 ---
 
 <html lang="en" class="scroll-smooth">
@@ -36,13 +36,13 @@ const canonical = `${import.meta.env.URL}${Astro.url.pathname}`
     <title>{title}</title>
     <meta name="author" content="Emilio Gozo" />
     <meta name="keywords" content="programming, data science, weather, climate, technology" />
-    <link rel="canonical" href={canonical} />
+    <link rel="canonical" href={canonicalURL} />
     <meta http-equiv="content-language" content="en" />
     <meta name="robots" content="index, follow" />
 
     <meta property="og:title" content={openGraph?.title || title} />
     {openGraph?.description && <meta property="og:description" content={openGraph.description} />}
-    <meta property="og:url" content={canonical} />
+    <meta property="og:url" content={canonicalURL} />
     {openGraph?.image && <meta property="og:image" content={openGraph.image} />}
     <meta property="og:type" content={openGraph?.type || 'website'} />
     <meta property="og:locale" content="en_US" />
