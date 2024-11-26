@@ -15,6 +15,7 @@ interface Props {
 const { title, openGraph } = Astro.props
 
 const twCreator = '@emiliogozo'
+const fedCreator = '@yohlime@hachyderm.io'
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 ---
 
@@ -52,6 +53,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site)
     {openGraph?.description && <meta name="twitter:description" content={openGraph.description} />}
     {openGraph?.image && <meta name="twitter:image" content={openGraph.image} />}
     <meta name="twitter:site" content={twCreator} />
+
+    {fedCreator && <meta name="fediverse:creator" content={fedCreator}>}
   </head>
   <body
     class="font-montserrat antialiased flex flex-col w-9/10 mx-auto my-8 md:my-12 gap-4 md:gap-8 bg-white text-black dark:bg-slate-900 dark:text-white"
