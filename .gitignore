@@ -21,3 +21,10 @@ pnpm-debug.log*
 
 # netlify
 .netlify
+
+# Devenv
+.devenv*
+devenv.local.nix
+
+# direnv
+.direnv
