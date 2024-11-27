@@ -8,7 +8,10 @@ import Profile from '../sections/Profile.astro'
 import Projects from '../sections/Projects.astro'
 import Skills from '../sections/Skills.astro'
 
-const ghProfile = await fetchProfile(import.meta.env.GITHUB_TOKEN)
+const ghUsername = import.meta.env.GITHUB_USERNAME
+const ghToken = import.meta.env.GITHUB_TOKEN
+const ghProfile = await fetchProfile(ghUsername, ghToken)
+
 const openGraphImg = '/portfolio-greeting.png'
 ---
 

@@ -2,9 +2,9 @@ import axios from 'axios'
 
 import { ghProfile } from '../schemas/github'
 
-const query = `
+const genQueryString = (ghUsername: string) => `
 {
-  user(login:"${import.meta.env.GITHUB_USERNAME}") { 
+  user(login:"${ghUsername}") { 
     name
     bio
     avatarUrl
@@ -35,7 +35,8 @@ const query = `
 }
 `
 
-export const fetchProfile = async (ghToken: string) => {
+export const fetchProfile = async (ghUsername: string, ghToken: string) => {
+  const query = genQueryString(ghUsername)
   const { data, status } = await axios.post(
     'https://api.github.com/graphql',
     { query },
