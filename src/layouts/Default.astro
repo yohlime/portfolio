@@ -8,14 +8,15 @@ interface Props {
   openGraph?: {
     title?: string
     image?: string
-    type?: 'website' | 'article'
+    type?: string // 'website' | 'article'
     description?: string
   }
 }
 const { title, openGraph } = Astro.props
 
 const twCreator = '@emiliogozo'
-const canonical = `${import.meta.env.URL}${Astro.url.pathname}`
+const fedCreator = '@yohlime@hachyderm.io'
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 ---
 
 <html lang="en" class="scroll-smooth">
@@ -36,13 +37,13 @@ const canonical = `${import.meta.env.URL}${Astro.url.pathname}`
     <title>{title}</title>
     <meta name="author" content="Emilio Gozo" />
     <meta name="keywords" content="programming, data science, weather, climate, technology" />
-    <link rel="canonical" href={canonical} />
+    <link rel="canonical" href={canonicalURL} />
     <meta http-equiv="content-language" content="en" />
     <meta name="robots" content="index, follow" />
 
     <meta property="og:title" content={openGraph?.title || title} />
     {openGraph?.description && <meta property="og:description" content={openGraph.description} />}
-    <meta property="og:url" content={canonical} />
+    <meta property="og:url" content={canonicalURL} />
     {openGraph?.image && <meta property="og:image" content={openGraph.image} />}
     <meta property="og:type" content={openGraph?.type || 'website'} />
     <meta property="og:locale" content="en_US" />
@@ -52,6 +53,8 @@ const canonical = `${import.meta.env.URL}${Astro.url.pathname}`
     {openGraph?.description && <meta name="twitter:description" content={openGraph.description} />}
     {openGraph?.image && <meta name="twitter:image" content={openGraph.image} />}
     <meta name="twitter:site" content={twCreator} />
+
+    {fedCreator && <meta name="fediverse:creator" content={fedCreator}>}
   </head>
   <body
     class="font-lato antialiased flex flex-col w-9/10 mx-auto my-8 md:my-12 gap-4 md:gap-8 bg-white text-black dark:bg-slate-900 dark:text-white"

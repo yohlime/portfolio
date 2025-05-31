@@ -5,16 +5,13 @@ import { storyblokEditable } from '@storyblok/astro'
 import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
 
 import Disqus from '@/components/vue/Disqus.vue'
-import type { SbBlogPost } from '@/types/storyblok'
+import type { BlogPost } from '@/types/storyblok'
 
 interface Props {
-  blok: SbBlogPost['content']
+  blok: BlogPost['content']
 }
 const { blok } = Astro.props
-
-const story = {
-  content: { component: 'rich_text', text: blok.content },
-}
+const content = { component: 'rich_text', text: blok.content }
 ---
 
 <article
@@ -36,7 +33,7 @@ const story = {
   }
   <h1>{blok.title}</h1>
 
-  <StoryblokComponent blok={story.content} />
+  <StoryblokComponent blok={content} />
 
   <Disqus client:load />
 </article>

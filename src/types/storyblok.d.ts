@@ -1,5 +1,5 @@
 import { z } from 'zod'
 
-import { blogPostStoryblok } from '@/schemas/storyblok'
+import { blogPost } from '@/schemas/storyblok'
 
-export type SbBlogPost = z.infer<typeof blogPostStoryblok>
+export type BlogPost = z.infer<typeof blogPost>

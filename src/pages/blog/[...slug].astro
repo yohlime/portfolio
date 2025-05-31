@@ -2,41 +2,16 @@
 import { useStoryblokApi } from '@storyblok/astro'
 import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
 
-import type { SbBlogPost } from '@/types/storyblok'
-
-import { getStoryRes } from '@/schemas/storyblok'
-
 import DefaultLayout from '@/layouts/Default.astro'
-
-export const getStaticPaths = async () => {
-  const sbApi = useStoryblokApi()
-
-  const { data } = await sbApi.get('cdn/stories', {
-    content_type: 'blogPost',
-    version: import.meta.env.VITE_ENVIRONMENT === 'preview' ? 'draft' : 'published',
-  })
-
-  const stories = Object.values(data.stories) as { slug: string }[]
-
-  return stories.map((story) => {
-    return {
-      params: { slug: story.slug },
-    }
-  })
-}
 
 const sbApi = useStoryblokApi()
 const { slug } = Astro.params
 
-let content: SbBlogPost['content']
-
-try {
-  const { data } = await sbApi.get(`cdn/stories/blog/${slug}`, {
-    version: import.meta.env.VITE_ENVIRONMENT === 'preview' ? 'draft' : 'published',
-  })
-  const sbData = getStoryRes.parse(data)
-  content = sbData.story.content
-} catch (error) {
+const { data } = await sbApi.get(`cdn/stories/blog/${slug}`, {
+  version: import.meta.env.DEV ? 'draft' : 'published',
+})
+const content = data?.story?.content
+if (content === undefined) {
   return Astro.redirect('/404')
 }
 ---

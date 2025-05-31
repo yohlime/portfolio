@@ -6,20 +6,20 @@ import DefaultLayout from '@/layouts/Default.astro'
 
 const storyblokApi = useStoryblokApi()
 const { data } = await storyblokApi.get('cdn/stories/home', {
-  version: import.meta.env.VITE_ENVIRONMENT === 'preview' ? 'draft' : 'published',
+  version: import.meta.env.DEV ? 'draft' : 'published',
 })
-const { content } = data.story
+const content = data?.story?.content
+
+const openGraphImg = '/cover-blogs.jpeg'
+const openGraph = {
+  title: 'Blog List - Emilio Gozo',
+  description:
+    'Explore our latest blog posts covering programming and data science, with a special focus on weather and climate topics. Stay informed and discover insights at the intersection of technology and environmental science.',
+  type: 'article',
+  image: openGraphImg,
+}
 ---
 
-<DefaultLayout
-  title="Blog by Emilio Gozo"
-  openGraph={{
-    title: 'Blog List - Emilio Gozo',
-    description:
-      'Explore our latest blog posts covering programming and data science, with a special focus on weather and climate topics. Stay informed and discover insights at the intersection of technology and environmental science.',
-    type: 'article',
-    image: `${import.meta.env.URL}/cover-blogs.jpeg`,
-  }}
->
-  <StoryblokComponent blok={content} />
+<DefaultLayout title="Blog by Emilio Gozo" openGraph={openGraph}>
+  {content !== undefined && <StoryblokComponent blok={content} />}
 </DefaultLayout>

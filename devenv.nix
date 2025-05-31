@@ -12,6 +12,10 @@
   };
 
   enterShell = ''
-    git --version
+    pnpm --version
+  '';
+
+  enterTest = ''
+    pnpm run test:unit
   '';
 }
