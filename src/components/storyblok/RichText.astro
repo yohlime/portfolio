@@ -19,11 +19,13 @@ const { blok } = Astro.props
   content={blok.text}
   schema={{
     nodes: {
-      code_block: ({ attrs }) => ({
+      code_block: ({ attrs, content }) => ({
         component: Code,
         props: {
-          lang: attrs.class.split('-')[1],
-          contentPropName: 'code',
+          lang: attrs.class?.split('-')[1],
+          code: content?.[0].text,
+          class: 'font-mono',
+          theme: 'catppuccin-macchiato',
         },
       }),
     },
