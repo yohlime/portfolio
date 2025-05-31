@@ -6,18 +6,17 @@ import mkcert from 'vite-plugin-mkcert'
 import netlify from '@astrojs/netlify'
 import sitemap from '@astrojs/sitemap'
 import vue from '@astrojs/vue'
-import storyblok from '@storyblok/astro'
+import { storyblok } from '@storyblok/astro'
 import UnoCSS from 'unocss/astro'
 
 const storyblokEnv = loadEnv('', process.cwd(), 'STORYBLOK')
+console.log(import.meta.env.VITE_ENVIRONMENT)
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://yohli.me',
   integrations: [
-    UnoCSS({
-      injectReset: true,
-    }),
+    UnoCSS(),
     vue(),
     storyblok({
       accessToken: storyblokEnv.STORYBLOK_TOKEN,

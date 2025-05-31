@@ -1,9 +1,29 @@
-import { defineConfig, presetIcons, presetTypography, presetUno } from 'unocss'
+import { defineConfig, presetIcons, presetWebFonts, presetTypography, presetWind4 } from 'unocss'
 
 export default defineConfig({
   presets: [
-    presetUno(),
+    presetWind4(),
     presetIcons(),
+    presetWebFonts({
+      provider: 'google',
+      fonts: {
+        sans: 'Roboto Flex',
+        mono: 'JetBrains Mono:400,700',
+        hurricane: 'Hurricane',
+        lato: [
+          {
+            name: 'Lato',
+            weights: ['400', '700'],
+            italic: true,
+          },
+          {
+            name: 'sans-serif',
+            provider: 'none',
+          },
+        ],
+      },
+      themeKey: 'font',
+    }),
     presetTypography({
       cssExtend: {
         a: {
@@ -29,32 +49,8 @@ export default defineConfig({
       nav: '#f4f4f4',
       'nav-alt': '#8c43ce',
     },
-    fontFamily: {
-      agustina: 'Agustina Regular',
-      montserrat: 'Montserrat',
-    },
   },
   shortcuts: {
     'social-media-badge': 'rounded-full  hover:bg-black transition duration-300 ease-in ',
   },
-  preflights: [
-    {
-      getCSS() {
-        return `
-        @font-face {
-          font-family: 'Agustina Regular';
-          font-style: normal;
-          font-weight: normal;
-          src: local('Agustina Regular'), url('/fonts/Agustina.woff') format('woff');
-          font-display: swap;
-        }
-        @font-face {
-          font-family: 'Montserrat';
-          src: local('Montserrat'), url('/fonts/Montserrat-Regular.ttf') format('woff');
-          font-display: swap;
-        }
-        `
-      },
-    },
-  ],
 })

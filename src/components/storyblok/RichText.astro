@@ -20,17 +20,15 @@ const { text } = blok
   content={text}
   schema={{
     nodes: {
-      code_block: ({ attrs, content }) => {
-        const lang = attrs.class?.split('-')?.[1]
-        const code = content?.[0]?.text
-        return {
-          component: Code,
-          props: {
-            lang,
-            code,
-          },
-        }
-      },
+      code_block: ({ attrs, content }) => ({
+        component: Code,
+        props: {
+          lang: attrs.class?.split('-')[1],
+          code: content?.[0].text,
+          class: 'font-mono',
+          theme: 'catppuccin-macchiato',
+        },
+      }),
     },
   }}
   resolver={(blok) => {
