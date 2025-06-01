@@ -19,7 +19,7 @@ const blogPostContent = z.object({
 export const blogPost = z.object({
   content: blogPostContent,
   full_slug: z.string(),
-  published_at: z.string(),
+  published_at: z.string().nullish(),
 })
 
 export const blogPostList = z.object({
