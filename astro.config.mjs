@@ -10,7 +10,6 @@ import { storyblok } from '@storyblok/astro'
 import UnoCSS from 'unocss/astro'
 
 const storyblokEnv = loadEnv('', process.cwd(), 'STORYBLOK')
-console.log(import.meta.env.VITE_ENVIRONMENT)
 
 // https://astro.build/config
 export default defineConfig({
@@ -20,7 +19,7 @@ export default defineConfig({
     vue(),
     storyblok({
       accessToken: storyblokEnv.STORYBLOK_TOKEN,
-      bridge: import.meta.env.DEV ? true : false,
+      bridge: import.meta.env.VITE_ENVIRONMENT ? true : false,
       components: {
         blogPost: 'components/storyblok/BlogPost',
         blogPostList: 'components/storyblok/BlogPostList',
