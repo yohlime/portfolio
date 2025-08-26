@@ -1,8 +1,6 @@
 import { defineConfig } from 'astro/config'
 import { loadEnv } from 'vite'
 
-import mkcert from 'vite-plugin-mkcert'
-
 import netlify from '@astrojs/netlify'
 import sitemap from '@astrojs/sitemap'
 import vue from '@astrojs/vue'
@@ -33,6 +31,6 @@ export default defineConfig({
   output: 'server',
   adapter: netlify(),
   vite: {
-    plugins: [mkcert()],
+    plugins: [],
   },
 })
