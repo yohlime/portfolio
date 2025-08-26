@@ -17,7 +17,7 @@
     "@nanostores/persistent": "^0.9.1",
     "@nanostores/vue": "^0.10.0",
     "@storyblok/astro": "^6.2.0",
-    "astro": "^5.12.8",
+    "astro": "^5.13.1",
     "axios": "^1.9.0",
     "date-fns": "^3.6.0",
     "nanostores": "^0.9.5",
