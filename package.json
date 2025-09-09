@@ -1,7 +1,7 @@
 {
   "name": "emil-portfolio",
   "type": "module",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -11,16 +11,16 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/netlify": "^6.5.8",
+    "@astrojs/netlify": "^6.5.10",
     "@astrojs/sitemap": "^3.5.1",
-    "@astrojs/vue": "^5.1.0",
-    "@nanostores/persistent": "^0.9.1",
-    "@nanostores/vue": "^0.10.0",
-    "@storyblok/astro": "^6.2.0",
-    "astro": "^5.13.3",
+    "@astrojs/vue": "^5.1.1",
+    "@nanostores/persistent": "^1.1.0",
+    "@nanostores/vue": "^1.0.1",
+    "@storyblok/astro": "^7.2.4",
+    "astro": "^5.13.6",
     "axios": "^1.11.0",
     "date-fns": "^3.6.0",
-    "nanostores": "^0.9.5",
+    "nanostores": "^1.0.1",
     "sharp": "^0.34.2",
     "typescript": "^5.8.3",
     "vite": "^6.3.5",
@@ -32,7 +32,7 @@
     "@iconify-json/emojione": "^1.2.1",
     "@iconify-json/fa6-brands": "^1.2.5",
     "@iconify-json/fa6-solid": "^1.2.3",
-    "storyblok-rich-text-astro-renderer": "^2.6.0",
+    "storyblok-rich-text-astro-renderer": "^2.8.1",
     "unocss": "^66.1.3"
   }
 }
