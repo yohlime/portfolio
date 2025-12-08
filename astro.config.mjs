@@ -1,11 +1,12 @@
 import { defineConfig } from 'astro/config'
 import { loadEnv } from 'vite'
 
-import netlify from '@astrojs/netlify'
 import sitemap from '@astrojs/sitemap'
 import vue from '@astrojs/vue'
 import { storyblok } from '@storyblok/astro'
 import UnoCSS from 'unocss/astro'
+
+import cloudflare from '@astrojs/cloudflare';
 
 const storyblokEnv = loadEnv('', process.cwd(), 'STORYBLOK')
 
@@ -29,7 +30,7 @@ export default defineConfig({
     sitemap(),
   ],
   output: 'server',
-  adapter: netlify(),
+  adapter: cloudflare(),
   vite: {
     plugins: [],
   },
