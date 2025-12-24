@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 export const ghPinnedRepo = z.object({
   name: z.string(),
-  description: z.string(),
+  description: z.string().nullable(),
   forkCount: z.number(),
   stargazers: z.object({
     totalCount: z.number(),

@@ -4,13 +4,11 @@ import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
 
 import DefaultLayout from '@/layouts/Default.astro'
 
-const { env } = Astro.locals.runtime;
-
 const sbApi = useStoryblokApi()
 const { slug } = Astro.params
 
 const { data } = await sbApi.get(`cdn/stories/blog/${slug}`, {
-  version: env.VITE_ENVIRONMENT ? 'draft' : 'published',
+  version: import.meta.env.VITE_ENVIRONMENT ? 'draft' : 'published',
 })
 const content = data?.story?.content
 if (content === undefined) {

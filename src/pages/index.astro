@@ -8,14 +8,12 @@ import Profile from '../sections/Profile.astro'
 import Projects from '../sections/Projects.astro'
 import Skills from '../sections/Skills.astro'
 
-import { getSecret } from 'astro:env/server';
+import { getSecret, GITHUB_USERNAME } from 'astro:env/server';
 
-const { env } = Astro.locals.runtime;
 
-const ghUsername = env.GITHUB_USERNAME
 const ghToken = getSecret("GITHUB_TOKEN") ?? ""
 
-const ghProfile = await fetchProfile(ghUsername, ghToken)
+const ghProfile = await fetchProfile(GITHUB_USERNAME, ghToken)
 
 const openGraphImg = '/portfolio-greeting.png'
 ---

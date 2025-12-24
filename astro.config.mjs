@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config'
+import { defineConfig, envField } from 'astro/config'
 import { loadEnv } from 'vite'
 
 import sitemap from '@astrojs/sitemap'
@@ -6,9 +6,10 @@ import vue from '@astrojs/vue'
 import { storyblok } from '@storyblok/astro'
 import UnoCSS from 'unocss/astro'
 
-import cloudflare from '@astrojs/cloudflare';
+import node from '@astrojs/node';
 
-const storyblokEnv = loadEnv('', process.cwd(), 'STORYBLOK')
+const { STORYBLOK_TOKEN } = loadEnv(process.env.NODE_ENV, process.cwd(), '')
+const isProd = import.meta.env.PROD;
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,8 +18,8 @@ export default defineConfig({
     UnoCSS(),
     vue(),
     storyblok({
-      accessToken: storyblokEnv.STORYBLOK_TOKEN,
-      bridge: import.meta.env.VITE_ENVIRONMENT ? true : false,
+      accessToken: STORYBLOK_TOKEN,
+      bridge: isProd ? true : false,
       components: {
         blogPost: 'components/storyblok/BlogPost',
         blogPostList: 'components/storyblok/BlogPostList',
@@ -29,9 +30,14 @@ export default defineConfig({
     }),
     sitemap(),
   ],
-  output: 'server',
-  adapter: cloudflare(),
-  vite: {
-    plugins: [],
+  env: {
+    schema: {
+      GITHUB_USERNAME: envField.string({ context: "server", access: "public" }),
+      GITHUB_TOKEN: envField.string({ context: "server", access: "secret" }),
+    }
   },
+  output: 'server',
+  adapter: node({
+    mode: 'standalone'
+  }),
 })

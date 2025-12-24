@@ -7,13 +7,11 @@ import { formatDistance } from 'date-fns'
 import { blogPostList } from '@/schemas/storyblok'
 import type { BlogPost } from '@/types/storyblok'
 
-const { env } = Astro.locals.runtime;
-
 const storyblokApi = useStoryblokApi()
 
 const data = await storyblokApi
   .get('cdn/stories', {
-    version: env.VITE_ENVIRONMENT ? 'draft' : 'published',
+    version: import.meta.env.VITE_ENVIRONMENT ? 'draft' : 'published',
     content_type: 'blogPost',
   })
   .then(({ data }) => blogPostList.parse(data))

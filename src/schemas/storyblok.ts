@@ -4,7 +4,7 @@ const blogPostContent = z.object({
   title: z.string(),
   content: z.object({
     type: z.string(),
-    content: z.record(z.any()).array(),
+    content: z.record(z.string(),z.any()).array(),
   }),
   description: z.string().optional(),
   featured_image: z
