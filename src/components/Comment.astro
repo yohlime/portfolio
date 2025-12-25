@@ -1,0 +1,16 @@
+<script is:inline>
+    var remark_config = {
+        host: 'https://remark42.yohli.me', // Where your comments are runnign
+        site_id: 'remark', // Corresponds tocker-compose.yml config.
+        show_rss_subscription: false, // Waste of space, but enable it if you need it.
+        no_footer: true, // Of course, you don't want to share what's powering your comments.
+    }
+    !function (e, n) {
+        for (var o = 0; o < e.length; o++) {
+            var r = n.createElement("script"), c = ".js", d = n.head || n.body;
+            "noModule" in r ? (r.type = "module", c = ".mjs") : r.async = !0, r.defer = !0, r.src = remark_config.host + "/web/" + e[o] + c, d.appendChild(r)
+        }
+    }(remark_config.components || ["embed"], document);
+</script>
+
+<div id="remark42"></div>
