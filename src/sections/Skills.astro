@@ -1,6 +1,4 @@
 ---
-import { Image } from 'astro:assets'
-
 import { skillsSection } from '@/data/portfolio'
 
 import DevActivityImg from '@/assets/images/developerActivity.svg'
@@ -17,6 +15,6 @@ import SoftwareSkill from '@/components/vue/SoftwareSkill.vue'
     </div>
   </div>
   <div class="flex justify-center md:w-1/2 md:order-first">
-    <Image src={DevActivityImg} alt="dev working" class="w-4/5 md:w-full" />
+    <DevActivityImg class="h-fit scale-80" />
   </div>
 </div>
