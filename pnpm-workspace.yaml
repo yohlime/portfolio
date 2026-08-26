@@ -1,2 +1,6 @@
+allowBuilds:
+  esbuild: true
+minimumReleaseAgeExclude:
+  - astro@7.2.7
 onlyBuiltDependencies:
   - esbuild
