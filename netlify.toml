@@ -2,9 +2,6 @@
   command = "pnpm build"
   publish = "dist"
 
-[images]
-remote_images = ["https://*"]
-
 [[redirects]]
 from = "/.well-known/*"
 to = "/well-known/:splat"

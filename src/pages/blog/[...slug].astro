@@ -1,29 +1,58 @@
 ---
-import { useStoryblokApi } from '@storyblok/astro'
-import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
+import { getLiveEntry } from 'astro:content'
+import { format } from 'date-fns'
 
+import Comment from '@/components/Comment.astro'
 import DefaultLayout from '@/layouts/Default.astro'
 
-const sbApi = useStoryblokApi()
-const { slug } = Astro.params
+const showDrafts = import.meta.env.DEV || process.env.SHOW_DRAFTS === 'true'
 
-const { data } = await sbApi.get(`cdn/stories/blog/${slug}`, {
-  version: import.meta.env.VITE_ENVIRONMENT ? 'draft' : 'published',
-})
-const content = data?.story?.content
-if (content === undefined) {
-  return Astro.redirect('/404')
+const { slug } = Astro.params
+const { entry, error } = await getLiveEntry('blog', slug ?? '')
+
+if (error || !entry || (entry.data.draft && !showDrafts)) {
+  return Astro.rewrite('/404')
 }
+
+const { data, rendered } = entry
+const html = rendered?.html ?? ''
+const wasUpdated = data.updated.getTime() > data.date.getTime()
 ---
 
 <DefaultLayout
-  title=`${content.title} by Emilio Gozo`
+  title={`${data.title} by Emilio Gozo`}
   openGraph={{
-    title: content.title,
-    description: content.description ?? undefined,
-    image: content.featured_image?.filename,
+    title: data.title,
+    description: data.description,
+    image: data.cover,
     type: 'article',
+    publishedTime: data.date.toISOString(),
+    modifiedTime: data.updated.toISOString(),
   }}
 >
-  <StoryblokComponent blok={content} />
+  <article
+    class="mx-auto max-w-none w-full md:w-2xl lg:w-4xl min-h-xl prose shadow-lg dark:prose-invert dark:shadow-sm dark:shadow-white p-8 rounded-xl"
+  >
+    {
+      data.cover && (
+        <img
+          class="w-full h-60 lg:h-80 object-cover"
+          src={`${data.cover}?w=1200&format=webp`}
+          width="900"
+          height="400"
+          alt={data.coverAlt ?? ''}
+        />
+      )
+    }
+    <h1>{data.title}</h1>
+
+    <div class="not-prose flex flex-wrap gap-x-4 text-sm text-gray-500 dark:text-gray-400">
+      <time datetime={data.date.toISOString()}>Published {format(data.date, 'MMMM d, yyyy')}</time>
+      {wasUpdated && <time datetime={data.updated.toISOString()}>Updated {format(data.updated, 'MMMM d, yyyy')}</time>}
+    </div>
+
+    <Fragment set:html={html} />
+
+    <Comment />
+  </article>
 </DefaultLayout>

@@ -1,0 +1,36 @@
+services:
+  app:
+    build:
+      context: .
+      args:
+        GITHUB_USERNAME: ${GITHUB_USERNAME}
+    ports:
+      - '4321:4321'
+    environment:
+      HOST: 0.0.0.0
+      PORT: '4321'
+      BLOG_CONTENT_PATH: /data/content/blog
+      SHOW_DRAFTS: 'false'
+      GITHUB_USERNAME: ${GITHUB_USERNAME}
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
+    volumes:
+      - ${BLOG_SOURCE_DIR:-./content}:/data/content:ro
+    restart: unless-stopped
+
+  preview:
+    build:
+      context: .
+      args:
+        GITHUB_USERNAME: ${GITHUB_USERNAME}
+    ports:
+      - '4322:4321'
+    environment:
+      HOST: 0.0.0.0
+      PORT: '4321'
+      BLOG_CONTENT_PATH: /data/content/blog
+      SHOW_DRAFTS: 'true'
+      GITHUB_USERNAME: ${GITHUB_USERNAME}
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
+    volumes:
+      - ${BLOG_SOURCE_DIR:-./content}:/data/content:ro
+    restart: unless-stopped
