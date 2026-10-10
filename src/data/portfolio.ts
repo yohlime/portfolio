@@ -8,7 +8,7 @@ export const greeting = {
 type SocialMedia = 'github' | 'linkedin' | 'gitlab' | 'bluesky' | 'xTwitter' | 'facebook' | 'instagram' | 'mastodon'
 export const socialMediaLinks: Partial<Record<SocialMedia, string>> = {
   github: 'https://github.com/yohlime',
-  linkedin: 'http://linkedin.com/in/emiliogozo',
+  linkedin: 'https://linkedin.com/in/emiliogozo',
   bluesky: 'https://bsky.app/profile/yohli.me',
   mastodon: 'https://hachyderm.io/@yohlime',
 }
