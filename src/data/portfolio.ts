@@ -5,11 +5,11 @@ export const greeting = {
   resumeLink: 'https://linkedin.com/in/emiliogozo',
 }
 
-type SocialMedia = 'github' | 'linkedin' | 'gitlab' | 'twitter' | 'xTwitter' | 'facebook' | 'instagram' | 'mastodon'
+type SocialMedia = 'github' | 'linkedin' | 'gitlab' | 'bluesky' | 'xTwitter' | 'facebook' | 'instagram' | 'mastodon'
 export const socialMediaLinks: Partial<Record<SocialMedia, string>> = {
   github: 'https://github.com/yohlime',
   linkedin: 'http://linkedin.com/in/emiliogozo',
-  xTwitter: 'http://twitter.com/emiliogozo',
+  bluesky: 'https://bsky.app/profile/yohli.me',
   mastodon: 'https://hachyderm.io/@yohlime',
 }
 
