@@ -10,7 +10,7 @@ export default defineConfig({
   integrations: [UnoCSS(), vue()],
   env: {
     schema: {
-      GITHUB_USERNAME: envField.string({ context: 'server', access: 'public' }),
+      GITHUB_USERNAME: envField.string({ context: 'server', access: 'secret' }),
       GITHUB_TOKEN: envField.string({ context: 'server', access: 'secret' }),
       // `access: 'secret'` keeps this out of the build and read at runtime
       // (dev reads .env, the container reads process.env).

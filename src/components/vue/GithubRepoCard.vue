@@ -2,6 +2,7 @@
   <a
     :href="data.url"
     target="_blank"
+    rel="noopener noreferrer"
     class="flex flex-col h-40 justify-between cursor-pointer bg-white dark:bg-slate-900 p-6 rounded-md shadow-md hover:shadow-lg dark:hover:shadow-md dark:hover:shadow-white dark:hover:bg-button-hover transition-shadow duration-300 ease-in"
   >
     <div class="flex flex-col">

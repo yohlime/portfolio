@@ -2,8 +2,6 @@ services:
   app:
     build:
       context: .
-      args:
-        GITHUB_USERNAME: ${GITHUB_USERNAME}
     ports:
       - '4321:4321'
     environment:
@@ -20,8 +18,6 @@ services:
   preview:
     build:
       context: .
-      args:
-        GITHUB_USERNAME: ${GITHUB_USERNAME}
     ports:
       - '4322:4321'
     environment:

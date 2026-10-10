@@ -8,17 +8,21 @@ import Profile from '../sections/Profile.astro'
 import Projects from '../sections/Projects.astro'
 import Skills from '../sections/Skills.astro'
 
-import { getSecret, GITHUB_USERNAME } from 'astro:env/server';
+import { getSecret } from 'astro:env/server'
 
+const ghToken = getSecret('GITHUB_TOKEN') ?? ''
+const ghUsername = getSecret('GITHUB_USERNAME') ?? ''
 
-const ghToken = getSecret("GITHUB_TOKEN") ?? ""
-
-const ghProfile = await fetchProfile(GITHUB_USERNAME, ghToken)
+const ghProfile = await fetchProfile(ghUsername, ghToken)
 
 const openGraphImg = '/portfolio-greeting.png'
 ---
 
-<DefaultLayout title="Emilio Gozo" openGraph={{ image: openGraphImg }}>
+<DefaultLayout
+  title="Emilio Gozo"
+  description="Emilio Gozo — meteorologist and developer working on numerical weather modelling, climate data analysis, and web development."
+  openGraph={{ image: openGraphImg }}
+>
   <Greeting />
   <Skills />
   {ghProfile && <Projects prof={ghProfile} />}

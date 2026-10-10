@@ -1,5 +1,5 @@
 <template>
-  <button class="border border-2 p-2 rounded-md" @click="handleToggle">
+  <button type="button" aria-label="Toggle theme" class="border border-2 p-2 rounded-md" @click="handleToggle">
     <div :class="[theme === 'dark' ? 'i-fa6-solid-sun' : 'i-fa6-solid-moon']"></div>
   </button>
 </template>

@@ -1,102 +1,27 @@
 ---
 import { socialMediaLinks } from '../data/portfolio'
+
+const links = [
+  { key: 'github', label: 'GitHub', bg: 'bg-[#333]', icon: 'i-fa6-brands-github', relMe: false },
+  { key: 'linkedin', label: 'LinkedIn', bg: 'bg-[#0a66c2]', icon: 'i-fa6-brands-linkedin-in', relMe: false },
+  { key: 'xTwitter', label: 'X (Twitter)', bg: 'bg-[#000]', icon: 'i-fa6-brands-x-twitter', relMe: false },
+  { key: 'mastodon', label: 'Mastodon', bg: 'bg-[#6364ff]', icon: 'i-fa6-brands-mastodon', relMe: true },
+] as const
+
+const items = links.map((link) => ({ ...link, href: socialMediaLinks[link.key] })).filter((link) => Boolean(link.href))
 ---
 
 <div class="flex space-x-2 justify-center md:justify-start">
-  {
-    socialMediaLinks.github && (
-      <a
-        href={socialMediaLinks.github}
-        class="flex  bg-[#333] w-10 h-10  justify-center items-center social-media-badge"
-        target="_blank"
-      >
-        <div class="i-fa6-brands-github w-1/2 h-1/2 text-white" />
-      </a>
-    )
-  }
-
-  {
-    socialMediaLinks.linkedin && (
-      <a
-        href={socialMediaLinks.linkedin}
-        class="flex  bg-[#0a66c2] w-10 h-10  justify-center items-center social-media-badge"
-        target="_blank"
-      >
-        <i class="i-fa6-brands-linkedin-in w-1/2 h-1/2 text-white" />
-      </a>
-    )
-  }
-
-  {
-    socialMediaLinks.gitlab && (
-      <a
-        href={socialMediaLinks.gitlab}
-        class="flex  bg-[#fca326] w-10 h-10  justify-center items-center social-media-badge"
-        target="_blank"
-      >
-        <i class="i-fa6-brands-gitlab w-1/2 h-1/2 text-white" />
-      </a>
-    )
-  }
-
-  {
-    socialMediaLinks.facebook && (
-      <a
-        href={socialMediaLinks.facebook}
-        class="flex  bg-[#3b5998] w-10 h-10  justify-center items-center social-media-badge"
-        target="_blank"
-      >
-        <i class="i-fa6-brands-facebook-f w-1/2 h-1/2 text-white" />
-      </a>
-    )
-  }
-
-  {
-    socialMediaLinks.instagram && (
-      <a
-        href={socialMediaLinks.instagram}
-        class="flex  bg-[#c32aa3] w-10 h-10  justify-center items-center social-media-badge"
-        target="_blank"
-      >
-        <i class="i-fa6-brands-instagram w-1/2 h-1/2 text-white" />
-      </a>
-    )
-  }
-
-  {
-    socialMediaLinks.twitter && (
-      <a
-        href={socialMediaLinks.twitter}
-        class="flex  bg-[#1da1f2]  w-10 h-10  justify-center items-center social-media-badge"
-        target="_blank"
-      >
-        <i class="i-fa6-brands-twitter w-1/2 h-1/2 text-white" />
-      </a>
-    )
-  }
-
-  {
-    socialMediaLinks.xTwitter && (
-      <a
-        href={socialMediaLinks.xTwitter}
-        class="flex  bg-[#000]  w-10 h-10  justify-center items-center social-media-badge"
-        target="_blank"
-      >
-        <i class="i-fa6-brands-x-twitter w-1/2 h-1/2 text-white" />
-      </a>
-    )
-  }
-
-  {
-    socialMediaLinks.mastodon && (
-      <a
-        rel="me"
-        href={socialMediaLinks.mastodon}
-        class="flex  bg-[#6364ff]  w-10 h-10  justify-center items-center social-media-badge"
-        target="_blank"
-      >
-        <i class="i-fa6-brands-mastodon w-1/2 h-1/2 text-white" />
-      </a>
-    )
-  }
+  {items.map(({ label, bg, icon, href, relMe }) => (
+    <a
+      href={href}
+      aria-label={label}
+      title={label}
+      rel={relMe ? 'me noopener noreferrer' : 'noopener noreferrer'}
+      target="_blank"
+      class={`flex ${bg} w-10 h-10 justify-center items-center social-media-badge`}
+    >
+      <span class={`${icon} w-1/2 h-1/2 text-white`} aria-hidden="true" />
+    </a>
+  ))}
 </div>

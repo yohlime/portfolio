@@ -35,33 +35,32 @@ const openGraph = {
 ---
 
 <DefaultLayout title="Blog by Emilio Gozo" openGraph={openGraph}>
+  <h1 class="text-3xl md:text-5xl">Blog</h1>
   <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    {
-      posts.map(({ title, description, publishedAt, href, cover, coverAlt }) => (
-        <a
-          href={href}
-          class="flex flex-col items-center md:flex-row md:max-w-lg bg-white border border-gray-200 rounded-lg shadow  hover:bg-gray-100 dark:border-gray-700 dark:bg-slate-900 dark:hover:shadow-sm dark:hover:shadow-white dark:hover:bg-button-hover transition-shadow duration-300 ease-in"
-        >
-          {cover && (
-            <img
-              class="object-cover rounded-t-lg w-full h-54 md:h-full md:w-48 md:min-h-48 md:rounded-none md:rounded-s-lg"
-              src={`${cover}?w=400&h=400&format=webp`}
-              width="200"
-              height="200"
-              loading="lazy"
-              alt={coverAlt}
-            />
-          )}
-          <div class="flex flex-col w-full justify-between p-4 leading-normal">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h5>
-            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 line-clamp-3">{description}</p>
-            <span class="text-xs text-right text-gray-500 dark-text-gray-300">
-              {formatDistance(publishedAt, new Date(), { addSuffix: true })}
-            </span>
-          </div>
-        </a>
-      ))
-    }
+    {posts.map(({ title, description, publishedAt, href, cover, coverAlt }) => (
+      <a
+        href={href}
+        class="flex flex-col items-center md:flex-row md:max-w-lg bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-slate-900 dark:hover:shadow-sm dark:hover:shadow-white dark:hover:bg-button-hover transition-shadow duration-300 ease-in"
+      >
+        {cover && (
+          <img
+            class="object-cover rounded-t-lg w-full h-54 md:h-full md:w-48 md:min-h-48 md:rounded-none md:rounded-s-lg"
+            src={`${cover}?w=400&h=400&format=webp`}
+            width="200"
+            height="200"
+            loading="lazy"
+            alt={coverAlt}
+          />
+        )}
+        <div class="flex flex-col w-full justify-between p-4 leading-normal">
+          <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h2>
+          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 line-clamp-3">{description}</p>
+          <span class="text-xs text-right text-gray-500 dark-text-gray-300">
+            {formatDistance(publishedAt, new Date(), { addSuffix: true })}
+          </span>
+        </div>
+      </a>
+    ))}
   </ul>
   {posts.length === 0 && <p class="text-center text-gray-500">No posts yet.</p>}
 </DefaultLayout>

@@ -10,8 +10,6 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
 FROM deps AS build
 WORKDIR /app
-ARG GITHUB_USERNAME
-ENV GITHUB_USERNAME=$GITHUB_USERNAME
 COPY . .
 RUN pnpm build
 
