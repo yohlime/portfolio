@@ -3,6 +3,7 @@ import path from 'node:path'
 
 import { createSatteriMarkdownProcessor } from '@astrojs/markdown-satteri'
 import { getSecret } from 'astro:env/server'
+import getReadingTime from 'reading-time'
 import { parse as parseYaml } from 'yaml'
 
 import type { LiveLoader } from 'astro/loaders'
@@ -20,6 +21,7 @@ export interface MarkdownLoaderData {
   tags: string[]
   cover?: string
   coverAlt?: string
+  minutesRead: string
   [key: string]: unknown
 }
 
@@ -115,9 +117,7 @@ function parseDate(value: unknown, fallback: Date): Date {
 
 function normaliseTags(value: unknown): string[] {
   const raw = Array.isArray(value) ? value : typeof value === 'string' ? value.split(/[,\s]+/) : []
-  const tags = raw
-    .map((tag) => String(tag).trim().replace(/^#+/, ''))
-    .filter((tag) => tag.length > 0)
+  const tags = raw.map((tag) => String(tag).trim().replace(/^#+/, '')).filter((tag) => tag.length > 0)
   return [...new Set(tags)]
 }
 
@@ -126,7 +126,10 @@ function isImageReference(reference: string): boolean {
 }
 
 function encodeReference(reference: string): string {
-  return reference.split('/').map((segment) => encodeURIComponent(segment)).join('/')
+  return reference
+    .split('/')
+    .map((segment) => encodeURIComponent(segment))
+    .join('/')
 }
 
 /** Convert Obsidian `![[embed]]` / `[[wikilink]]` syntax into standard markdown. */
@@ -265,6 +268,12 @@ async function renderFile(absoluteFile: string) {
 
   const html = rewriteLinks(rewriteImages(code, noteDir), fallbackId)
 
+  const plainText = code
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+  const minutesRead = getReadingTime(plainText).text
+
   const publishedValue = frontmatter.date ?? frontmatter.created ?? frontmatter.published
   const date = parseDate(publishedValue, stat.mtime)
   // When a publish date is set explicitly, default `updated` to it (manual mode)
@@ -284,6 +293,7 @@ async function renderFile(absoluteFile: string) {
     tags: normaliseTags(frontmatter.tags),
     cover: resolveAssetUrl(frontmatter.cover != null ? String(frontmatter.cover) : undefined, noteDir),
     coverAlt: frontmatter.coverAlt != null ? String(frontmatter.coverAlt) : undefined,
+    minutesRead,
   }
 
   return {

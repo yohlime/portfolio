@@ -16,6 +16,7 @@ const blog = defineLiveCollection({
     tags: z.array(z.string()).default([]),
     cover: z.string().optional(),
     coverAlt: z.string().optional(),
+    minutesRead: z.string(),
   }),
 })
 

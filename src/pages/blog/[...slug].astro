@@ -68,6 +68,10 @@ const jsonLd = blogPostingGraph({
             Updated {formatPostDate(data.updated)}
           </time>
         )}
+        <span class="flex items-center gap-1">
+          <span class="i-fa6-solid-clock" aria-hidden="true" />
+          {data.minutesRead}
+        </span>
       </div>
       <ShareButtons url={shareUrl} title={data.title} client:visible />
     </div>

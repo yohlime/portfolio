@@ -24,6 +24,7 @@ const posts = (entries ?? [])
     cover: entry.data.cover,
     coverAlt: entry.data.coverAlt ?? '',
     publishedAt: entry.data.date,
+    minutesRead: entry.data.minutesRead,
   }))
 
 const openGraphImg = '/cover-blogs.jpeg'
@@ -50,7 +51,7 @@ const openGraph = {
     </a>
   </div>
   <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    {posts.map(({ title, description, publishedAt, href, cover, coverAlt }) => (
+    {posts.map(({ title, description, publishedAt, href, cover, coverAlt, minutesRead }) => (
       <a
         href={href}
         class="flex flex-col items-center md:flex-row md:max-w-lg bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-slate-900 dark:hover:shadow-sm dark:hover:shadow-white dark:hover:bg-button-hover transition-shadow duration-300 ease-in"
@@ -68,13 +69,13 @@ const openGraph = {
         <div class="flex flex-col w-full justify-between p-4 leading-normal">
           <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h2>
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 line-clamp-3">{description}</p>
-          <time
-            datetime={publishedAt.toISOString()}
-            title={formatPostDate(publishedAt)}
-            class="text-xs text-right text-gray-500 dark-text-gray-300"
-          >
-            {formatDistanceToNow(publishedAt, { addSuffix: true })}
-          </time>
+          <div class="flex items-center justify-end gap-2 text-xs text-gray-500 dark-text-gray-300">
+            <span>{minutesRead}</span>
+            <span aria-hidden="true">·</span>
+            <time datetime={publishedAt.toISOString()} title={formatPostDate(publishedAt)}>
+              {formatDistanceToNow(publishedAt, { addSuffix: true })}
+            </time>
+          </div>
         </div>
       </a>
     ))}
