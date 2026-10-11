@@ -6,6 +6,7 @@ import { formatDistanceToNow } from 'date-fns'
 import Comment from '@/components/Comment.astro'
 import DefaultLayout from '@/layouts/Default.astro'
 import ShareButtons from '@/components/vue/ShareButtons.vue'
+import Tooltip from '@/components/vue/Tooltip.vue'
 import { formatPostDateShort, formatPostTimestamp } from '@/lib/dates'
 import { blogPostingGraph } from '@/lib/schema'
 
@@ -61,19 +62,15 @@ const jsonLd = blogPostingGraph({
 
     <div class="not-prose flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
       <div class="flex flex-wrap gap-x-4 text-sm text-gray-500 dark:text-gray-400">
-        <span class="flex items-center gap-1">
+        <Tooltip content={formatPostTimestamp(data.date)} client:visible>
           <span class="i-fa6-solid-calendar-day" aria-hidden="true" />
-          <time datetime={data.date.toISOString()} title={formatPostTimestamp(data.date)}>
-            {formatPostDateShort(data.date)}
-          </time>
-        </span>
+          <time datetime={data.date.toISOString()}>{formatPostDateShort(data.date)}</time>
+        </Tooltip>
         {wasUpdated && (
-          <span class="flex items-center gap-1">
+          <Tooltip content={formatPostTimestamp(data.updated)} client:visible>
             <span class="i-fa6-solid-pencil" aria-hidden="true" />
-            <time datetime={data.updated.toISOString()} title={formatPostTimestamp(data.updated)}>
-              {formatDistanceToNow(data.updated, { addSuffix: true })}
-            </time>
-          </span>
+            <time datetime={data.updated.toISOString()}>{formatDistanceToNow(data.updated, { addSuffix: true })}</time>
+          </Tooltip>
         )}
         <span class="flex items-center gap-1">
           <span class="i-fa6-solid-clock" aria-hidden="true" />
