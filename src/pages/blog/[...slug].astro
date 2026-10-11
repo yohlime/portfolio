@@ -9,6 +9,7 @@ import ShareButtons from '@/components/vue/ShareButtons.vue'
 import Tooltip from '@/components/vue/Tooltip.vue'
 import { formatPostDateShort, formatPostTimestamp } from '@/lib/dates'
 import { blogPostingGraph } from '@/lib/schema'
+import { tagHref } from '@/lib/tags'
 
 const showDrafts = import.meta.env.DEV || getSecret('SHOW_DRAFTS') === 'true'
 
@@ -48,6 +49,11 @@ const jsonLd = blogPostingGraph({
     modifiedTime: data.updated.toISOString(),
   }}
 >
+  <div
+    id="reading-progress"
+    class="fixed top-0 left-0 z-50 h-1 w-0 bg-button transition-[width] duration-75"
+    aria-hidden="true"
+  ></div>
   <article class="mx-auto max-w-none w-full md:w-2xl lg:w-4xl min-h-xl prose shadow-lg dark:prose-invert dark:shadow-sm dark:shadow-white p-8 rounded-xl">
     {data.cover && (
       <img
@@ -82,6 +88,32 @@ const jsonLd = blogPostingGraph({
 
     <Fragment set:html={html} />
 
+    {data.tags.length > 0 && (
+      <div class="not-prose mt-6 flex flex-wrap gap-2">
+        {data.tags.map((tag) => (
+          <a
+            href={tagHref(tag)}
+            class="rounded-full bg-nav px-3 py-1 text-sm text-gray-600 transition-colors hover:bg-button hover:text-white dark:bg-slate-800 dark:text-gray-300 dark:hover:bg-button-hover"
+          >
+            #{tag}
+          </a>
+        ))}
+      </div>
+    )}
+
     <Comment />
   </article>
 </DefaultLayout>
+
+<script>
+  const bar = document.getElementById('reading-progress')
+  if (bar) {
+    const update = () => {
+      const el = document.documentElement
+      const max = el.scrollHeight - el.clientHeight
+      bar.style.width = max > 0 ? `${Math.min(100, (el.scrollTop / max) * 100)}%` : '0%'
+    }
+    document.addEventListener('scroll', update, { passive: true })
+    update()
+  }
+</script>

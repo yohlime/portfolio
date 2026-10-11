@@ -22,9 +22,11 @@ export const GET: APIRoute = async ({ site }) => {
   }
 
   const posts = (entries ?? []).filter((entry) => !entry.data.draft)
+  const tags = [...new Set(posts.flatMap((entry) => entry.data.tags))].sort()
 
   const urls = [
     ...STATIC_PATHS.map((pathname) => `<url><loc>${new URL(pathname, base).href}</loc></url>`),
+    ...tags.map((tag) => `<url><loc>${new URL(`/blog/tags/${encodeURIComponent(tag)}`, base).href}</loc></url>`),
     ...posts.map((entry) => {
       const loc = new URL(`/blog/${encodeSlug(entry.data.slug)}`, base).href
       const lastmod = entry.data.updated.toISOString()

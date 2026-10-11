@@ -1,0 +1,60 @@
+---
+import { formatDistanceToNow } from 'date-fns'
+
+import { formatPostDate } from '@/lib/dates'
+
+interface Props {
+  title: string
+  description?: string
+  href: string
+  cover?: string
+  coverAlt: string
+  publishedAt: Date
+  minutesRead: string
+  tags?: string[]
+}
+
+const { title, description, href, cover, coverAlt, publishedAt, minutesRead, tags = [] } = Astro.props
+---
+
+<a
+  href={href}
+  class="flex flex-col items-center md:flex-row md:max-w-lg bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-slate-900 dark:hover:shadow-sm dark:hover:shadow-white dark:hover:bg-button-hover transition-shadow duration-300 ease-in"
+>
+  {cover && (
+    <img
+      class="object-cover rounded-t-lg w-full h-54 md:h-full md:w-48 md:min-h-48 md:rounded-none md:rounded-s-lg"
+      src={`${cover}?w=400&h=400&format=webp`}
+      width="200"
+      height="200"
+      loading="lazy"
+      alt={coverAlt}
+    />
+  )}
+  <div class="flex flex-col w-full justify-between gap-3 p-4 leading-normal">
+    <div>
+      <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h2>
+      <p class="font-normal text-gray-700 dark:text-gray-400 line-clamp-3">{description}</p>
+    </div>
+    {tags.length > 0 && (
+      <ul class="flex flex-wrap gap-1">
+        {tags.map((tag) => (
+          <li class="rounded bg-nav px-1.5 py-0.5 text-xs text-gray-600 dark:bg-slate-800 dark:text-gray-300">{tag}</li>
+        ))}
+      </ul>
+    )}
+    <div class="flex items-center justify-end gap-2 text-xs text-gray-500 dark-text-gray-300">
+      <span class="flex items-center gap-1">
+        <span class="i-fa6-solid-clock" aria-hidden="true" />
+        {minutesRead}
+      </span>
+      <span aria-hidden="true">·</span>
+      <span class="flex items-center gap-1">
+        <span class="i-fa6-solid-calendar-day" aria-hidden="true" />
+        <time datetime={publishedAt.toISOString()} title={formatPostDate(publishedAt)}>
+          {formatDistanceToNow(publishedAt, { addSuffix: true })}
+        </time>
+      </span>
+    </div>
+  </div>
+</a>

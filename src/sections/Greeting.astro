@@ -33,6 +33,12 @@ import GreetImg from '@/assets/images/manOnTable.svg'
     transform-origin: 70% 70%;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .wave-emoji {
+      animation: none;
+    }
+  }
+
   @keyframes wave {
     0% {
       transform: rotate(0deg);

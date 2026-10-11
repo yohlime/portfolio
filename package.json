@@ -7,6 +7,7 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
+    "test": "vitest run",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "astro": "astro"
@@ -39,6 +40,7 @@
     "@unocss/astro": "^66.6.8",
     "prettier": "^3.9.9",
     "prettier-plugin-astro": "^1.1.1",
-    "unocss": "^66.6.8"
+    "unocss": "^66.6.8",
+    "vitest": "^5.0.3"
   }
 }

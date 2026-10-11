@@ -48,6 +48,7 @@ export const GET: APIRoute = async ({ site }) => {
         `<link>${url}</link>`,
         `<guid isPermaLink="true">${url}</guid>`,
         `<pubDate>${entry.data.date.toUTCString()}</pubDate>`,
+        ...entry.data.tags.map((tag) => `<category>${escapeXml(tag)}</category>`),
         description ? `<description>${escapeXml(description)}</description>` : '',
         html ? `<content:encoded>${cdata(html)}</content:encoded>` : '',
         '</item>',

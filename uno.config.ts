@@ -7,7 +7,6 @@ export default defineConfig({
     presetWebFonts({
       provider: 'google',
       fonts: {
-        sans: 'Roboto Flex',
         mono: 'JetBrains Mono:400,700',
         hurricane: 'Hurricane',
         lato: [

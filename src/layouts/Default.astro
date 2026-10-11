@@ -1,4 +1,6 @@
 ---
+import { ClientRouter } from 'astro:transitions'
+
 import Footer from '../components/Footer.astro'
 import Header from '../components/Header.astro'
 import TopButton from '../components/TopButton.astro'
@@ -42,12 +44,16 @@ const ogImage = openGraph?.image ? new URL(openGraph.image, Astro.site).href : u
     <link rel="mask-icon" href="/safari-pinned-tab.svg?v8=qAJ44G5Bm7" color="#885bd5" />
     <link rel="shortcut icon" href="/favicon.ico?v8=qAJ44G5Bm7" />
     <meta name="msapplication-TileColor" content="#603cba" />
-    <meta name="theme-color" content="#6c63ff" />
+    <meta name="theme-color" content="#6c63ff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v8=qAJ44G5Bm7" />
     <meta name="generator" content={Astro.generator} />
 
+    <ClientRouter />
+
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="alternate" type="application/rss+xml" title="Emilio Gozo" href="/rss.xml" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
@@ -79,9 +85,17 @@ const ogImage = openGraph?.image ? new URL(openGraph.image, Astro.site).href : u
     )}
   </head>
   <body class="font-lato antialiased bg-white text-black dark:bg-slate-900 dark:text-white">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-button focus:px-4 focus:py-2 focus:text-white"
+    >
+      Skip to content
+    </a>
     <div class="flex flex-col w-9/10 mx-auto my-8 md:my-12 gap-4 md:gap-8">
       <Header />
-      <slot />
+      <main id="main">
+        <slot />
+      </main>
       <Footer />
     </div>
     <TopButton />

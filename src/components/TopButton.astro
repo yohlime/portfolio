@@ -30,5 +30,7 @@
     }
   }
 
-  customElements.define('top-button', TopButton)
+  if (!customElements.get('top-button')) {
+    customElements.define('top-button', TopButton)
+  }
 </script>
