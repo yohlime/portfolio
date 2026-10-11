@@ -64,14 +64,14 @@ const jsonLd = blogPostingGraph({
         <span class="flex items-center gap-1">
           <span class="i-fa6-solid-calendar-day" aria-hidden="true" />
           <time datetime={data.date.toISOString()} title={formatPostTimestamp(data.date)}>
-            Published {formatPostDateShort(data.date)}
+            {formatPostDateShort(data.date)}
           </time>
         </span>
         {wasUpdated && (
           <span class="flex items-center gap-1">
             <span class="i-fa6-solid-pencil" aria-hidden="true" />
             <time datetime={data.updated.toISOString()} title={formatPostTimestamp(data.updated)}>
-              Updated {formatDistanceToNow(data.updated, { addSuffix: true })}
+              {formatDistanceToNow(data.updated, { addSuffix: true })}
             </time>
           </span>
         )}
