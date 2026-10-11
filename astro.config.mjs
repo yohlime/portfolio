@@ -8,6 +8,10 @@ import UnoCSS from 'unocss/astro'
 export default defineConfig({
   site: 'https://yohli.me',
   integrations: [UnoCSS(), vue()],
+  image: {
+    remotePatterns: [{ protocol: 'https', hostname: 'avatars.githubusercontent.com' }],
+  },
+  prefetch: true,
   env: {
     schema: {
       GITHUB_USERNAME: envField.string({ context: 'server', access: 'secret' }),
@@ -15,6 +19,7 @@ export default defineConfig({
       // `access: 'secret'` keeps this out of the build and read at runtime
       // (dev reads .env, the container reads process.env).
       BLOG_CONTENT_PATH: envField.string({ context: 'server', access: 'secret', optional: true }),
+      SHOW_DRAFTS: envField.string({ context: 'server', access: 'secret', optional: true }),
     },
   },
   output: 'server',

@@ -1,25 +1,27 @@
+export const prerender = true
+
 export async function GET() {
-  const d = { 
-    "m.homeserver": {
-      "base_url": "https://matrix.yohli.me"
+  const d = {
+    'm.homeserver': {
+      base_url: 'https://matrix.yohli.me',
     },
-    "m.identity_server": {
-      "base_url": "https://vector.im"
+    'm.identity_server': {
+      base_url: 'https://vector.im',
     },
-    "org.matrix.msc4143.rtc_foci":[
+    'org.matrix.msc4143.rtc_foci': [
       {
-        "type":"livekit",
-        "livekit_service_url": "https://matrixrtc.yohli.me"
-      }
-    ]
+        type: 'livekit',
+        livekit_service_url: 'https://matrixrtc.yohli.me',
+      },
+    ],
   }
   return new Response(JSON.stringify(d), {
     status: 200,
     headers: {
       'Content-Type': 'application/json',
-      "access-control-allow-origin": "*",
-      "access-control-allow-methods": "GET, OPTIONS",
-      "access-control-allow-headers": "*",
+      'access-control-allow-origin': '*',
+      'access-control-allow-methods': 'GET, OPTIONS',
+      'access-control-allow-headers': '*',
     },
   })
 }

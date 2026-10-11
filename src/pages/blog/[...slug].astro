@@ -1,12 +1,13 @@
 ---
 import { getLiveEntry } from 'astro:content'
+import { getSecret } from 'astro:env/server'
 import { format } from 'date-fns'
 
 import Comment from '@/components/Comment.astro'
 import DefaultLayout from '@/layouts/Default.astro'
 import ShareButtons from '@/components/vue/ShareButtons.vue'
 
-const showDrafts = import.meta.env.DEV || process.env.SHOW_DRAFTS === 'true'
+const showDrafts = import.meta.env.DEV || getSecret('SHOW_DRAFTS') === 'true'
 
 const { slug } = Astro.params
 const { entry, error } = await getLiveEntry('blog', slug ?? '')

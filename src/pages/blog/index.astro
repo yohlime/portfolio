@@ -1,10 +1,11 @@
 ---
 import { getLiveCollection } from 'astro:content'
+import { getSecret } from 'astro:env/server'
 import { formatDistance } from 'date-fns'
 
 import DefaultLayout from '@/layouts/Default.astro'
 
-const showDrafts = import.meta.env.DEV || process.env.SHOW_DRAFTS === 'true'
+const showDrafts = import.meta.env.DEV || getSecret('SHOW_DRAFTS') === 'true'
 
 const { entries, error } = await getLiveCollection('blog')
 if (error) {

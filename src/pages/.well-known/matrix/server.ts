@@ -1,12 +1,14 @@
+export const prerender = true
+
 export async function GET() {
-  const d = { "m.server": "matrix.yohli.me:443" }
+  const d = { 'm.server': 'matrix.yohli.me:443' }
   return new Response(JSON.stringify(d), {
     status: 200,
     headers: {
       'Content-Type': 'application/json',
-      "access-control-allow-origin": "*",
-      "access-control-allow-methods": "GET, OPTIONS",
-      "access-control-allow-headers": "*",
+      'access-control-allow-origin': '*',
+      'access-control-allow-methods': 'GET, OPTIONS',
+      'access-control-allow-headers': '*',
     },
   })
 }
