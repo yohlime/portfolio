@@ -4,6 +4,7 @@ import { format } from 'date-fns'
 
 import Comment from '@/components/Comment.astro'
 import DefaultLayout from '@/layouts/Default.astro'
+import ShareButtons from '@/components/vue/ShareButtons.vue'
 
 const showDrafts = import.meta.env.DEV || process.env.SHOW_DRAFTS === 'true'
 
@@ -17,6 +18,7 @@ if (error || !entry || (entry.data.draft && !showDrafts)) {
 const { data, rendered } = entry
 const html = rendered?.html ?? ''
 const wasUpdated = data.updated.getTime() > data.date.getTime()
+const shareUrl = new URL(Astro.url.pathname, Astro.site).href
 ---
 
 <DefaultLayout
@@ -30,25 +32,26 @@ const wasUpdated = data.updated.getTime() > data.date.getTime()
     modifiedTime: data.updated.toISOString(),
   }}
 >
-  <article
-    class="mx-auto max-w-none w-full md:w-2xl lg:w-4xl min-h-xl prose shadow-lg dark:prose-invert dark:shadow-sm dark:shadow-white p-8 rounded-xl"
-  >
-    {
-      data.cover && (
-        <img
-          class="w-full h-60 lg:h-80 object-cover"
-          src={`${data.cover}?w=1200&format=webp`}
-          width="900"
-          height="400"
-          alt={data.coverAlt ?? ''}
-        />
-      )
-    }
+  <article class="mx-auto max-w-none w-full md:w-2xl lg:w-4xl min-h-xl prose shadow-lg dark:prose-invert dark:shadow-sm dark:shadow-white p-8 rounded-xl">
+    {data.cover && (
+      <img
+        class="w-full h-60 lg:h-80 object-cover"
+        src={`${data.cover}?w=1200&format=webp`}
+        width="900"
+        height="400"
+        alt={data.coverAlt ?? ''}
+      />
+    )}
     <h1>{data.title}</h1>
 
-    <div class="not-prose flex flex-wrap gap-x-4 text-sm text-gray-500 dark:text-gray-400">
-      <time datetime={data.date.toISOString()}>Published {format(data.date, 'MMMM d, yyyy')}</time>
-      {wasUpdated && <time datetime={data.updated.toISOString()}>Updated {format(data.updated, 'MMMM d, yyyy')}</time>}
+    <div class="not-prose flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+      <div class="flex flex-wrap gap-x-4 text-sm text-gray-500 dark:text-gray-400">
+        <time datetime={data.date.toISOString()}>Published {format(data.date, 'MMMM d, yyyy')}</time>
+        {wasUpdated && (
+          <time datetime={data.updated.toISOString()}>Updated {format(data.updated, 'MMMM d, yyyy')}</time>
+        )}
+      </div>
+      <ShareButtons url={shareUrl} title={data.title} client:visible />
     </div>
 
     <Fragment set:html={html} />

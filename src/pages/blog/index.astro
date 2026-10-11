@@ -35,7 +35,18 @@ const openGraph = {
 ---
 
 <DefaultLayout title="Blog by Emilio Gozo" openGraph={openGraph}>
-  <h1 class="text-3xl md:text-5xl">Blog</h1>
+  <div class="flex items-center justify-between gap-4">
+    <h1 class="text-3xl md:text-5xl">Blog</h1>
+    <a
+      href="/rss.xml"
+      aria-label="RSS feed"
+      title="RSS feed"
+      class="flex items-center gap-1.5 text-sm text-subtitle hover:text-button transition-colors"
+    >
+      <span class="i-fa6-solid-rss" aria-hidden="true" />
+      RSS
+    </a>
+  </div>
   <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     {posts.map(({ title, description, publishedAt, href, cover, coverAlt }) => (
       <a
