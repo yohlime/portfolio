@@ -70,11 +70,17 @@ const openGraph = {
           <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h2>
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 line-clamp-3">{description}</p>
           <div class="flex items-center justify-end gap-2 text-xs text-gray-500 dark-text-gray-300">
-            <span>{minutesRead}</span>
+            <span class="flex items-center gap-1">
+              <span class="i-fa6-solid-clock" aria-hidden="true" />
+              {minutesRead}
+            </span>
             <span aria-hidden="true">·</span>
-            <time datetime={publishedAt.toISOString()} title={formatPostDate(publishedAt)}>
-              {formatDistanceToNow(publishedAt, { addSuffix: true })}
-            </time>
+            <span class="flex items-center gap-1">
+              <span class="i-fa6-solid-calendar-day" aria-hidden="true" />
+              <time datetime={publishedAt.toISOString()} title={formatPostDate(publishedAt)}>
+                {formatDistanceToNow(publishedAt, { addSuffix: true })}
+              </time>
+            </span>
           </div>
         </div>
       </a>

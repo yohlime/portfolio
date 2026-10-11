@@ -1,11 +1,12 @@
 ---
 import { getLiveEntry } from 'astro:content'
 import { getSecret } from 'astro:env/server'
+import { formatDistanceToNow } from 'date-fns'
 
 import Comment from '@/components/Comment.astro'
 import DefaultLayout from '@/layouts/Default.astro'
 import ShareButtons from '@/components/vue/ShareButtons.vue'
-import { formatPostDate, formatPostTimestamp } from '@/lib/dates'
+import { formatPostDateShort, formatPostTimestamp } from '@/lib/dates'
 import { blogPostingGraph } from '@/lib/schema'
 
 const showDrafts = import.meta.env.DEV || getSecret('SHOW_DRAFTS') === 'true'
@@ -60,13 +61,19 @@ const jsonLd = blogPostingGraph({
 
     <div class="not-prose flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
       <div class="flex flex-wrap gap-x-4 text-sm text-gray-500 dark:text-gray-400">
-        <time datetime={data.date.toISOString()} title={formatPostTimestamp(data.date)}>
-          Published {formatPostDate(data.date)}
-        </time>
-        {wasUpdated && (
-          <time datetime={data.updated.toISOString()} title={formatPostTimestamp(data.updated)}>
-            Updated {formatPostDate(data.updated)}
+        <span class="flex items-center gap-1">
+          <span class="i-fa6-solid-calendar-day" aria-hidden="true" />
+          <time datetime={data.date.toISOString()} title={formatPostTimestamp(data.date)}>
+            Published {formatPostDateShort(data.date)}
           </time>
+        </span>
+        {wasUpdated && (
+          <span class="flex items-center gap-1">
+            <span class="i-fa6-solid-pencil" aria-hidden="true" />
+            <time datetime={data.updated.toISOString()} title={formatPostTimestamp(data.updated)}>
+              Updated {formatDistanceToNow(data.updated, { addSuffix: true })}
+            </time>
+          </span>
         )}
         <span class="flex items-center gap-1">
           <span class="i-fa6-solid-clock" aria-hidden="true" />
