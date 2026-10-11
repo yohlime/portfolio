@@ -10,17 +10,22 @@ import Skills from '../sections/Skills.astro'
 
 import { getSecret } from 'astro:env/server'
 
+import { websiteGraph } from '../lib/schema'
+
 const ghToken = getSecret('GITHUB_TOKEN') ?? ''
 const ghUsername = getSecret('GITHUB_USERNAME') ?? ''
 
 const ghProfile = await fetchProfile(ghUsername, ghToken)
 
 const openGraphImg = '/portfolio-greeting.png'
+const description =
+  'Emilio Gozo — meteorologist and developer working on numerical weather modelling, climate data analysis, and web development.'
 ---
 
 <DefaultLayout
   title="Emilio Gozo"
-  description="Emilio Gozo — meteorologist and developer working on numerical weather modelling, climate data analysis, and web development."
+  description={description}
+  jsonLd={websiteGraph(description)}
   openGraph={{ image: openGraphImg }}
 >
   <Greeting />

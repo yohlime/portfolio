@@ -1,11 +1,12 @@
 ---
 import { getLiveEntry } from 'astro:content'
 import { getSecret } from 'astro:env/server'
-import { format } from 'date-fns'
 
 import Comment from '@/components/Comment.astro'
 import DefaultLayout from '@/layouts/Default.astro'
 import ShareButtons from '@/components/vue/ShareButtons.vue'
+import { formatPostDate, formatPostTimestamp } from '@/lib/dates'
+import { blogPostingGraph } from '@/lib/schema'
 
 const showDrafts = import.meta.env.DEV || getSecret('SHOW_DRAFTS') === 'true'
 
@@ -20,10 +21,22 @@ const { data, rendered } = entry
 const html = rendered?.html ?? ''
 const wasUpdated = data.updated.getTime() > data.date.getTime()
 const shareUrl = new URL(Astro.url.pathname, Astro.site).href
+const cover = data.cover ? new URL(data.cover, Astro.site).href : undefined
+
+const jsonLd = blogPostingGraph({
+  url: shareUrl,
+  title: data.title,
+  description: data.description,
+  image: cover,
+  datePublished: data.date.toISOString(),
+  dateModified: data.updated.toISOString(),
+  tags: data.tags,
+})
 ---
 
 <DefaultLayout
   title={`${data.title} by Emilio Gozo`}
+  jsonLd={jsonLd}
   openGraph={{
     title: data.title,
     description: data.description,
@@ -47,9 +60,13 @@ const shareUrl = new URL(Astro.url.pathname, Astro.site).href
 
     <div class="not-prose flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
       <div class="flex flex-wrap gap-x-4 text-sm text-gray-500 dark:text-gray-400">
-        <time datetime={data.date.toISOString()}>Published {format(data.date, 'MMMM d, yyyy')}</time>
+        <time datetime={data.date.toISOString()} title={formatPostTimestamp(data.date)}>
+          Published {formatPostDate(data.date)}
+        </time>
         {wasUpdated && (
-          <time datetime={data.updated.toISOString()}>Updated {format(data.updated, 'MMMM d, yyyy')}</time>
+          <time datetime={data.updated.toISOString()} title={formatPostTimestamp(data.updated)}>
+            Updated {formatPostDate(data.updated)}
+          </time>
         )}
       </div>
       <ShareButtons url={shareUrl} title={data.title} client:visible />
