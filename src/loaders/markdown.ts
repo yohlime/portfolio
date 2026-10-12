@@ -34,6 +34,23 @@ function getProcessor() {
   return processorPromise
 }
 
+interface ParsedFile {
+  file: string
+  id: string
+  fallbackId: string
+  noteDir: string
+  frontmatter: Record<string, unknown>
+  content: string
+  data: MarkdownLoaderData
+  mtime: Date
+  mtimeMs: number
+}
+
+// Listing pages only need frontmatter, so metadata is parsed once and cached by
+// file mtime. HTML rendering (the expensive Shiki pass) is deferred to entry loads.
+const parsedCache = new Map<string, ParsedFile>()
+const renderedCache = new Map<string, { mtimeMs: number; html: string }>()
+
 function contentRoot(): string {
   return path.resolve(getSecret('BLOG_CONTENT_PATH') ?? './content/blog')
 }
@@ -255,20 +272,19 @@ function toId(absoluteFile: string): string {
   return toPosix(relative).replace(/\.(mdx?|markdown)$/i, '')
 }
 
-async function renderFile(absoluteFile: string) {
-  const [raw, stat] = await Promise.all([fs.readFile(absoluteFile, 'utf8'), fs.stat(absoluteFile)])
+async function parseFile(absoluteFile: string): Promise<ParsedFile> {
+  const stat = await fs.stat(absoluteFile)
+  const cached = parsedCache.get(absoluteFile)
+  if (cached && cached.mtimeMs === stat.mtimeMs) return cached
+
+  const raw = await fs.readFile(absoluteFile, 'utf8')
   const { data: frontmatter, content } = parseFrontmatter(raw)
 
   const fallbackId = toId(absoluteFile)
   const id = frontmatter.slug ? String(frontmatter.slug).replace(/^\/+/, '') : fallbackId
   const noteDir = path.dirname(absoluteFile)
 
-  const processor = await getProcessor()
-  const { code } = await processor.render(convertWikiSyntax(content), { frontmatter })
-
-  const html = rewriteLinks(rewriteImages(code, noteDir), fallbackId)
-
-  const plainText = code
+  const plainText = content
     .replace(/<[^>]+>/g, ' ')
     .replace(/\s+/g, ' ')
     .trim()
@@ -296,11 +312,39 @@ async function renderFile(absoluteFile: string) {
     minutesRead,
   }
 
-  return {
+  const parsed: ParsedFile = {
+    file: absoluteFile,
     id,
+    fallbackId,
+    noteDir,
+    frontmatter,
+    content,
     data,
-    rendered: { html },
-    cacheHint: { lastModified: stat.mtime },
+    mtime: stat.mtime,
+    mtimeMs: stat.mtimeMs,
+  }
+  parsedCache.set(absoluteFile, parsed)
+  return parsed
+}
+
+async function renderHtml(parsed: ParsedFile): Promise<string> {
+  const cached = renderedCache.get(parsed.file)
+  if (cached && cached.mtimeMs === parsed.mtimeMs) return cached.html
+
+  const processor = await getProcessor()
+  const { code } = await processor.render(convertWikiSyntax(parsed.content), { frontmatter: parsed.frontmatter })
+  const html = rewriteLinks(rewriteImages(code, parsed.noteDir), parsed.fallbackId)
+
+  renderedCache.set(parsed.file, { mtimeMs: parsed.mtimeMs, html })
+  return html
+}
+
+function toEntry(parsed: ParsedFile, html?: string) {
+  return {
+    id: parsed.id,
+    data: parsed.data,
+    rendered: html !== undefined ? { html } : undefined,
+    cacheHint: { lastModified: parsed.mtime },
   }
 }
 
@@ -318,7 +362,8 @@ export function markdownLoader(): LiveLoader<MarkdownLoaderData, { id: string }>
         if (!isInside(contentRoot(), candidate)) continue
         try {
           await fs.access(candidate)
-          return await renderFile(candidate)
+          const parsed = await parseFile(candidate)
+          return toEntry(parsed, await renderHtml(parsed))
         } catch {
           continue
         }
@@ -327,9 +372,8 @@ export function markdownLoader(): LiveLoader<MarkdownLoaderData, { id: string }>
       // Fallback for entries whose `slug` frontmatter differs from their file path.
       const files = await walkMarkdownFiles(contentRoot())
       for (const file of files) {
-        if (toId(file) === id) continue
-        const entry = await renderFile(file)
-        if (entry.id === id) return entry
+        const parsed = await parseFile(file)
+        if (parsed.id === id) return toEntry(parsed, await renderHtml(parsed))
       }
 
       return undefined
@@ -340,7 +384,8 @@ export function markdownLoader(): LiveLoader<MarkdownLoaderData, { id: string }>
         console.warn(`[markdown-loader] No markdown files found in "${contentRoot()}".`)
       }
 
-      const entries = await Promise.all(files.map((file) => renderFile(file)))
+      // Metadata only: listing pages render cards from frontmatter, not post HTML.
+      const entries = await Promise.all(files.map(async (file) => toEntry(await parseFile(file))))
       return { entries }
     },
   }

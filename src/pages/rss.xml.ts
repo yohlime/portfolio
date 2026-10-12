@@ -1,4 +1,4 @@
-import { getLiveCollection } from 'astro:content'
+import { getLiveCollection, getLiveEntry } from 'astro:content'
 
 import type { APIRoute } from 'astro'
 
@@ -36,27 +36,32 @@ export const GET: APIRoute = async ({ site }) => {
     .filter((entry) => !entry.data.draft)
     .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
 
-  const items = posts
-    .map((entry) => {
-      const url = new URL(`/blog/${encodeSlug(entry.data.slug)}`, base).href
-      const html = (entry.rendered?.html ?? '').replace(/(src|href)="\//g, `$1="${base.origin}/`)
-      const description = entry.data.description ?? ''
+  const items = (
+    await Promise.all(
+      posts.map(async (entry) => {
+        const url = new URL(`/blog/${encodeSlug(entry.data.slug)}`, base).href
+        // The collection loader returns metadata only, so fetch the rendered
+        // HTML for each post to embed as `content:encoded`.
+        const { entry: full } = await getLiveEntry('blog', entry.data.slug)
+        const html = (full?.rendered?.html ?? '').replace(/(src|href)="\//g, `$1="${base.origin}/`)
+        const description = entry.data.description ?? ''
 
-      return [
-        '<item>',
-        `<title>${escapeXml(entry.data.title)}</title>`,
-        `<link>${url}</link>`,
-        `<guid isPermaLink="true">${url}</guid>`,
-        `<pubDate>${entry.data.date.toUTCString()}</pubDate>`,
-        ...entry.data.tags.map((tag) => `<category>${escapeXml(tag)}</category>`),
-        description ? `<description>${escapeXml(description)}</description>` : '',
-        html ? `<content:encoded>${cdata(html)}</content:encoded>` : '',
-        '</item>',
-      ]
-        .filter(Boolean)
-        .join('')
-    })
-    .join('')
+        return [
+          '<item>',
+          `<title>${escapeXml(entry.data.title)}</title>`,
+          `<link>${url}</link>`,
+          `<guid isPermaLink="true">${url}</guid>`,
+          `<pubDate>${entry.data.date.toUTCString()}</pubDate>`,
+          ...entry.data.tags.map((tag) => `<category>${escapeXml(tag)}</category>`),
+          description ? `<description>${escapeXml(description)}</description>` : '',
+          html ? `<content:encoded>${cdata(html)}</content:encoded>` : '',
+          '</item>',
+        ]
+          .filter(Boolean)
+          .join('')
+      }),
+    )
+  ).join('')
 
   const feedUrl = new URL('rss.xml', base).href
   const body = `<?xml version="1.0" encoding="UTF-8"?>
