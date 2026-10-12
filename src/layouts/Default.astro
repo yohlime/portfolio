@@ -4,6 +4,7 @@ import { ClientRouter } from 'astro:transitions'
 import Footer from '../components/Footer.astro'
 import Header from '../components/Header.astro'
 import TopButton from '../components/TopButton.astro'
+import LoadingBar from '../components/vue/LoadingBar.vue'
 
 interface Props {
   title: string
@@ -85,6 +86,7 @@ const ogImage = openGraph?.image ? new URL(openGraph.image, Astro.site).href : u
     )}
   </head>
   <body class="font-lato antialiased bg-white text-black dark:bg-slate-900 dark:text-white">
+    <LoadingBar client:load />
     <a
       href="#main"
       class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-button focus:px-4 focus:py-2 focus:text-white"
