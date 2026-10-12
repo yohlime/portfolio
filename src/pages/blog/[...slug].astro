@@ -89,7 +89,7 @@ const jsonLd = blogPostingGraph({
     <Fragment set:html={html} />
 
     {data.tags.length > 0 && (
-      <div class="not-prose mt-6 flex flex-wrap gap-2">
+      <div class="not-prose mt-6 flex flex-wrap gap-2 mb-4">
         {data.tags.map((tag) => (
           <a
             href={tagHref(tag)}
